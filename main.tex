@@ -1,5 +1,94 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+\documentclass[12pt]{book}
+\usepackage[letterpaper, margin=1in, headheight=105pt]{geometry}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{titling}
+\usepackage{comment}
+\usepackage{xparse}
+\usepackage{amsthm}
+\usepackage{ifpdf}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,
+			linkcolor=WildStrawberry,
+			anchorcolor=red,
+			citecolor=green,
+			urlcolor=RoyalBlue,
+			filecolor=brown,
+			menucolor=pink]{hyperref}
+\usepackage[linesnumbered,
+			boxed,
+			algochapter,
+			algo2e,
+			lined]{algorithm2e}
+\usepackage[numbered,
+			framed]{matlab-prettifier}
+\usepackage[backend=biber,backref=true]{biblatex}
+\usepackage[titletoc]{appendix}
+\addbibresource{reference.bib}
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+
+\title{\textbf{Math 566 Algebraic Combinatorics}}
+\author{\calligra{Steven Karp}}
+\date{\today}
+
+
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+
+
+
+
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem*{remark}{Remark}
+
+\graphicspath{{./graphics/}}
+
+\setlength{\algomargin}{2em}
+\lstset{xleftmargin=.1\textwidth, xrightmargin=.1\textwidth}
+
+\pagestyle{fancy}
+
+
 \begin{document}
-(Type your content here.)
+
+\chapter{Algebraic Graph Theory}
+
+\input{lecture01.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

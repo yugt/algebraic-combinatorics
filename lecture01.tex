@@ -1,0 +1,83 @@
+\begin{itemize}
+\item Linear algebra
+\item Group theory (Cayley graphs, Dynkin diagrams)
+\end{itemize}
+
+\section{Eigenvalues}
+
+\begin{definition}[Adjacency matrix]
+Let \(G=(V,E)\) be a finite graph.
+The \emph{adjacency matrix} \( A(G)=\{0,1\}^{V\times V} \) is defined by
+\[ A(G)_{v,w}=\begin{cases} 1 & \text{if } v\sim w \\ 0 & \text{otherwise} \end{cases} \]
+\end{definition}
+
+Recall the characteristic polynomial of a square matrix \(M\) over \C
+\[ \phi_M(t)\coloneqq \det(tI-M). \]
+
+
+\begin{definition}[Characteristic polynomial]
+Let \(G=(V,E)\) be a finite graph.
+The \emph{Characteristic polynomial} is defined by
+\[ \phi_G(t)\coloneqq \phi_{A(G)}(t), \]
+and call the zeros (with multiplicitier) the eigenvalues of \(G\).
+\end{definition}
+
+\begin{definition}[Spectrum]
+The \emph{spectrum} of \(G\) is the multiset of its eigenvalues.
+\end{definition}
+
+\begin{example}[spectrum]
+\begin{align*}
+A(G)&=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\\
+\phi_G(t)&=\det\begin{pmatrix} t & -1 \\ -1 & t \end{pmatrix}=-t^2-1\\
+\text{spectrum}&: \{1,-1\}
+\end{align*}
+\end{example}
+
+\begin{remark}
+Eigenvalues provide information about the connectivity of the graph.
+\end{remark}
+
+
+\begin{theorem}
+Let \(A\in\R^{n\times n}\) be symmetric, then \(A\) \emph{orthogonally diagonalizable} over \R, \text{i.e.},
+there exists an orthonormal basis
+\[ v^{(1)}, v^{(2)},\cdots,v^{(n)}\in\R^n \]
+of eigenvectors of \(A\) corresponding to real eigenvalues \(\lambda_1,\lambda_2,\cdots,\lambda_n\in\R\), we have
+\[A=\sum_{i=1}^{n}\lambda_i v^{(i)}v^{(i)T} \]
+\end{theorem}
+
+Therefore the eigenvalues of any graph \(G\) are all real and we'll denote then
+\[ \lambda_1(G)\geq\lambda_2(G)\geq\cdots\geq\lambda_n(G), \]
+where \(n=|V(G)|\).
+
+\begin{theorem}[Perron-Forbenius]
+If a matrix \(A\in\R^{n\times n}\) has nonnegative entries, then the spectral radius of \(A\) (\textit{i.e.}, the maximum magnitude over all complex eigenvalues of A) is an eigenvalue of \(A\), corresponding to an eigenvector in \(\R_{\ge0}^n\).
+\end{theorem}
+Therefore for any graph \(G\), \(\lambda_1(G)\) is the spectral radius and corresponds to an eigenvector with nonnegative entries.
+Perron-Forbenius also implies if \(G\) is connected, then \(\lambda_1(G)\) has multiplicity 1.
+
+
+\begin{definition}[disjoint union]
+If \(G=(V,E)\), \(G'=(V',E')\) are graphs, their \emph{disjoint union} is the graph
+\[ G\sqcup G'=(V\sqcup V', E\sqcup E') \]
+and
+\[ A(G\sqcup G)=\begin{bmatrix} A(G) & 0 \\ 0 & A(G') \end{bmatrix} \]
+\end{definition}
+\begin{remark}
+Spectrum doesn't detect if the graph is connected.
+\end{remark}
+\begin{example}
+\begin{align*}
+G&: V=\{1,2\}, E=\{\{1,2\}\}\\
+\text{spectrum}&: \{1,-1\}\\
+G\sqcup G&: V=\{1,2,3,4\}, E=\{\{1,2\},\{3,4\}\}\\
+\text{spectrum}&: \{1,1,-1,-1\}
+\end{align*}
+\end{example}
+
+\begin{remark}
+Note that the spectrum of \(G\sqcup G'\) is the multiset union of the spectra of \(G\) and \(G'\).
+\end{remark}
+
+
