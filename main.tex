@@ -1,4 +1,4 @@
-\documentclass[12pt]{book}
+\documentclass[12pt,oneside]{book}
 \usepackage[letterpaper, margin=1in, headheight=105pt]{geometry}
 \usepackage{subcaption}
 \usepackage{enumerate}
@@ -15,8 +15,6 @@
 \usepackage{comment}
 \usepackage{xparse}
 \usepackage{amsthm}
-\usepackage{ifpdf}
-\usepackage{float}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks=true,
 			linkcolor=WildStrawberry,
@@ -50,10 +48,8 @@
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
-\newcommand{\E}{\ensuremath{\mathbb{E}}}
-
-
-
+\DeclareMathOperator*{\E}{\ensuremath{\mathbb{E}}}
+\renewcommand{\iff}{\ifmmode \iff \else \text{if and only if} \fi}
 
 
 \newtheorem{theorem}{Theorem}[chapter]
@@ -78,17 +74,5 @@
 \chapter{Algebraic Graph Theory}
 
 \input{lecture01.tex}
-
-
-
-
-
-
-
-
-
-
-
-
 
 \end{document}

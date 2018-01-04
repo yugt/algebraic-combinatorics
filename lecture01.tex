@@ -81,3 +81,55 @@ Note that the spectrum of \(G\sqcup G'\) is the multiset union of the spectra of
 \end{remark}
 
 
+\section{Regular Graphs}
+\begin{definition}
+A graph \(G=(V,E)\) is called \emph{\(k\)-regular} if every vertex has degree \(k\in\N\).
+\end{definition}
+\begin{remark}
+\(G\) is regular \iff \(\bar e\) is an eigenvector, where \(\bar e=\begin{bmatrix} 1 & 1 & \cdots & 1 \end{bmatrix}^T\in\R^n \).
+\[ A(G)\cdot\bar e=\deg_G(V) \]
+\end{remark}
+
+\begin{proposition}
+Let \(G=(V,E)\), then
+\[ \E_{v\in V(G)} \deg_G(v) \stackrel{(i)}{\leq} \lambda_1(G) \stackrel{(ii)}{\leq} \max_{v\in V(G)}\deg_G(V), \]
+where
+\[ \E_{v\in V(G)} \deg_G(v)=\frac{1}{n}\sum_{v\in V(G)}\deg_G(v). \]
+We have equality in (i) \iff \(G\) is regular.
+If \(G\) is connected, equality holds in (ii) \iff \(G\) is regular.
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(i)]
+\item For any symmetric \(A\in\R^{n\times n}\),
+\[ \lambda_{\max}(A)\geq x^T Ax, \forall x\in\R^n \text{ with } ||x||=1 \]
+with equality \iff \(x\) is an eigenvector of \(A\) with eigenvalue \(\lambda_{\max}(A)\).
+\begin{align*}
+A&=\sum_j \lambda_j x^{(j)}x^{(j)T}\\
+x&=\sum_j c_j x^{(j)}\\
+\sum_j c_j^2&=1\\
+x^T Ax&=\sum_j \lambda_j c_j^2
+\end{align*}
+Take \(A=A(G), x=\frac{1}{\sqrt{n}}\bar e\), then
+\[ x^T Ax=\frac{1}{n} \underbrace{\bar e^T A\bar e}_{\text{sum of entries}}=\text{average degree} \]
+\item Let's assume \(V(G)=[n]=\{1,2,\cdots,n\}\).
+Recall that by Perron-Forbenius, \(\lambda_1(G)\) corresponds to an eigenvector \(x\in\R_{\ge0}^n\).
+Then for any \(i\in[n]\),
+\[ \lambda_1(G) x_i=\Big(A(G)x\Big)_i=\sum_{j=1}^{n} A(G)_{i,j}x_j=\sum_{j\sim i}x_j. \]
+Now take \(i\in[n]\) so that \(x_i\) is maximum.
+Then
+\[ \lambda_1(G)x_i=\sum_{j\sim i}x_j\leq \sum_{j\sim i}x_i=\deg_G(v_i) x_i\leq \left( \max_{v\in V(G)}\deg_G(v) \right) x_i \tag{*} \]
+So
+\[ \lambda_1(G)\leq\max_{v\in V(G)}\deg_G(v). \]
+Suppose equality holds everywhere in (ii) and \(G\) is connected, then equality holds everywhere in (*).
+So \(x_j=x_i\) for all \(j\sim i\).
+Applying the same argument to \(j\sim i\), then \(x_h=x_j=x_i\) for any \(h\sim j\), \texttt{etc}.
+Since \(G\) is connected, \(x\) is a multiple of \(\bar e\), \textit{i.e.}, \(\bar e\) is an eigenvector of \(G\).
+\end{enumerate}
+\end{proof}
+\begin{corollary}
+The complete graph \(K_n\) is the only graph on \(n\) vertices with eigenvalue \(n-1\).
+In particular, \(K_n\) is uniquely determined by its spectrum.
+\end{corollary}
+\begin{remark}
+Not all graphs can be recovered by their spectrum, \textit{i.e.}, the spectrum is not a faithful (in that graph can be uniquely determined) graph invariant (in that spectrum depends on graph only up to isomorphism).
+\end{remark}
