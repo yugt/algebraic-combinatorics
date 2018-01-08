@@ -1,0 +1,31 @@
+\begin{example}
+Spectrum does not tell connectivity. For example the following 
+\begin{picture}
+\begin{tikzpicture}
+%% disconnected graph
+\node[plain](1) {};
+\node[plain](2) [right = 1cm of 1]  {};
+\node[plain](3) [above = 1cm of 1] {};
+\node[plain](4) [left = 1cm of 1] {};
+\node[plain](5) [below = 1cm of 1] {};
+\path[draw,thick]
+(2) edge node {} (3)
+(3) edge node {} (4)
+(4) edge node {} (5)
+(5) edge node {} (2);
+%% connected graph
+\begin{scope}[xshift=4cm]
+\node[plain](1) {};
+\node[plain](2) [right = 1cm of 1]  {};
+\node[plain](3) [above = 1cm of 1] {};
+\node[plain](4) [left = 1cm of 1] {};
+\node[plain](5) [below = 1cm of 1] {};
+\path[draw,thick]
+(1) edge node {} (3)
+(1) edge node {} (4)
+(1) edge node {} (5)
+(1) edge node {} (2);
+\end{scope}
+\end{tikzpicture}
+\end{picture}
+\end{example}

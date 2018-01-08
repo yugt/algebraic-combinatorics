@@ -26,10 +26,10 @@ and call the zeros (with multiplicitier) the eigenvalues of \(G\).
 The \emph{spectrum} of \(G\) is the multiset of its eigenvalues.
 \end{definition}
 
-\begin{example}[spectrum]
+\begin{example}[Spectrum]
 \begin{align*}
 A(G)&=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\\
-\phi_G(t)&=\det\begin{pmatrix} t & -1 \\ -1 & t \end{pmatrix}=-t^2-1\\
+\phi_G(t)&=\det\begin{pmatrix} t & -1 \\ -1 & t \end{pmatrix}=t^2-1\\
 \text{spectrum}&: \{1,-1\}
 \end{align*}
 \end{example}
@@ -40,6 +40,7 @@ Eigenvalues provide information about the connectivity of the graph.
 
 
 \begin{theorem}
+\label{thm1.1}
 Let \(A\in\R^{n\times n}\) be symmetric, then \(A\) \emph{orthogonally diagonalizable} over \R, \text{i.e.},
 there exists an orthonormal basis
 \[ v^{(1)}, v^{(2)},\cdots,v^{(n)}\in\R^n \]
@@ -50,6 +51,21 @@ of eigenvectors of \(A\) corresponding to real eigenvalues \(\lambda_1,\lambda_2
 Therefore the eigenvalues of any graph \(G\) are all real and we'll denote then
 \[ \lambda_1(G)\geq\lambda_2(G)\geq\cdots\geq\lambda_n(G), \]
 where \(n=|V(G)|\).
+
+\begin{question}
+What is the intuition for
+\[A=\sum_{i=1}^{n}\lambda_i v^{(i)}v^{(i)T} ? \]
+\end{question}
+\begin{answer}
+The fact that the sum equals \(A\) we can just check explicitly:
+if we denote the sum by \(S\), we compute 
+\[S v^{(i)} = \left(\sum_{j=1}^{n}\lambda_j v^{(j)}v^{(j)T}\right)v^{(i)} = \sum_{j=1}^{n}\lambda_j v^{(j)}\left(v^{(j)T}v^{(i)}\right) = \lambda_i v^{(i)} \quad \forall i=1,\cdots,n,\]
+and so \(S = A\).
+Remember that \(x^Ty\) is just the inner product of vectors \(x\) and \(y\) in \(\R^n\).
+Here we use distributive law and the property of orthonormal basis that \(v^{(i)T}v^{(j)}=v^{(j)T}v^{(i)}=\mathbb{I}_{\{i=j\}}\).
+\end{answer}
+
+
 
 \begin{theorem}[Perron-Forbenius]
 If a matrix \(A\in\R^{n\times n}\) has nonnegative entries, then the spectral radius of \(A\) (\textit{i.e.}, the maximum magnitude over all complex eigenvalues of A) is an eigenvalue of \(A\), corresponding to an eigenvector in \(\R_{\ge0}^n\).
@@ -93,15 +109,15 @@ A graph \(G=(V,E)\) is called \emph{\(k\)-regular} if every vertex has degree \(
 \begin{proposition}
 Let \(G=(V,E)\), then
 \[ \E_{v\in V(G)} \deg_G(v) \stackrel{(i)}{\leq} \lambda_1(G) \stackrel{(ii)}{\leq} \max_{v\in V(G)}\deg_G(V), \]
-where
-\[ \E_{v\in V(G)} \deg_G(v)=\frac{1}{n}\sum_{v\in V(G)}\deg_G(v). \]
+where the \emph{expectation of the degree} is defined to be
+\[ \E_{v\in V(G)} \deg_G(v)\coloneqq\frac{1}{n}\sum_{v\in V(G)}\deg_G(v). \]
 We have equality in (i) \iff \(G\) is regular.
 If \(G\) is connected, equality holds in (ii) \iff \(G\) is regular.
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(i)]
 \item For any symmetric \(A\in\R^{n\times n}\),
-\[ \lambda_{\max}(A)\geq x^T Ax, \forall x\in\R^n \text{ with } ||x||=1 \]
+\[ \lambda_{\max}(A)\geq x^T Ax, \quad\forall x\in\R^n \text{ with } ||x||=1 \]
 with equality \iff \(x\) is an eigenvector of \(A\) with eigenvalue \(\lambda_{\max}(A)\).
 \begin{align*}
 A&=\sum_j \lambda_j x^{(j)}x^{(j)T}\\
@@ -109,9 +125,25 @@ x&=\sum_j c_j x^{(j)}\\
 \sum_j c_j^2&=1\\
 x^T Ax&=\sum_j \lambda_j c_j^2
 \end{align*}
+
+\begin{question}
+The first equation is from Theorem \ref{thm1.1}, but where do the following equations come from?
+\end{question}
+\begin{answer}
+The second equation comes from the fact that a vector in \(\R^n\) can be represented as the linear combination of an orthonormal basis.
+The third equation comes from the constraint \(||x||=1\), where the norm can be written as \(\sqrt{x^T x}=1\).
+The fourth one comes from calculation
+\[ Ax=\sum_j \lambda_j x^{(j)}x^{(j)T} \sum_i c_i x^{(i)}=\sum_j c_j\lambda_j x^{(j)} \]
+so that
+\[ x^T Ax=\sum_i c_i x^{(i)T}\sum_j c_j\lambda_j x^{(j)}=\sum_i c_i^2\lambda_i  \]
+Here we use distributive law and the property of orthonormal basis that \(x^{(i)T}x^{(j)}=x^{(j)T}x^{(i)}=\mathbb{I}_{\{i=j\}}\).
+\end{answer}
+
+
+
 Take \(A=A(G), x=\frac{1}{\sqrt{n}}\bar e\), then
 \[ x^T Ax=\frac{1}{n} \underbrace{\bar e^T A\bar e}_{\text{sum of entries}}=\text{average degree} \]
-\item Let's assume \(V(G)=[n]=\{1,2,\cdots,n\}\).
+\item Let's assume \(V(G)=[n]\coloneqq\{1,2,\cdots,n\}\).
 Recall that by Perron-Forbenius, \(\lambda_1(G)\) corresponds to an eigenvector \(x\in\R_{\ge0}^n\).
 Then for any \(i\in[n]\),
 \[ \lambda_1(G) x_i=\Big(A(G)x\Big)_i=\sum_{j=1}^{n} A(G)_{i,j}x_j=\sum_{j\sim i}x_j. \]
@@ -122,7 +154,7 @@ So
 \[ \lambda_1(G)\leq\max_{v\in V(G)}\deg_G(v). \]
 Suppose equality holds everywhere in (ii) and \(G\) is connected, then equality holds everywhere in (*).
 So \(x_j=x_i\) for all \(j\sim i\).
-Applying the same argument to \(j\sim i\), then \(x_h=x_j=x_i\) for any \(h\sim j\), \texttt{etc}.
+Applying the same argument to \(j\sim i\), then \(x_h=x_j=x_i\) for any \(h\sim j\), \textit{etc}.
 Since \(G\) is connected, \(x\) is a multiple of \(\bar e\), \textit{i.e.}, \(\bar e\) is an eigenvector of \(G\).
 \end{enumerate}
 \end{proof}

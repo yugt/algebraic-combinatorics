@@ -1,3 +1,17 @@
+% This is the repository for Math 566 Algebraic Combinatorics Lecture Notes.
+
+% The materials are voluntarily typed, and the professor are not likely to proofread them.
+
+% If you are not familiar with LaTeX or don't want to type, you can click on the PDF on the black bar on the top of the page to download the PDF file.
+
+% If you are willing to contribute by typing some lecture notes, click on the PROJECT icon on the black bar on the top of the page, and a side bar will occur on the left. Click on the corresponding lecture number and edit the file. You can refer to lecture01.tex as a sample.
+
+% If you have some questions on the course materials, you can type the question in the question environment. It will be highlighted in red.
+
+% If you have the answer to the questions, you can type the answer in the answer environment. It will be highlighted in green.
+
+% If you are familiar with git commands, you can clone the repository and edit offline, and pull and push to synchronize.
+
 \documentclass[12pt,oneside]{book}
 \usepackage[letterpaper, margin=1in, headheight=105pt]{geometry}
 \usepackage{subcaption}
@@ -34,6 +48,12 @@
 \usepackage[titletoc]{appendix}
 \addbibresource{reference.bib}
 
+%% tikz setting for graph drawing
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{plain/.style={circle,fill=blue!20,draw,minimum size=0.5cm,inner sep=0pt},
+}
+
 \makeatletter
 \@addtoreset{chapter}{part}
 \makeatother
@@ -59,7 +79,16 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{example}{Example}[chapter]
+\theoremstyle{remark}
 \newtheorem*{remark}{Remark}
+
+\newtheoremstyle{ques}{}{}{\color{red}}{}{\bfseries\color{red}}{:}{ }{}
+\theoremstyle{ques}
+\newtheorem*{question}{Question}
+
+\newtheoremstyle{ans}{}{}{\color{green}}{}{\bfseries\color{green}}{:}{ }{}
+\theoremstyle{ans}
+\newtheorem*{answer}{Answer}
 
 \graphicspath{{./graphics/}}
 
@@ -74,5 +103,7 @@
 \chapter{Algebraic Graph Theory}
 
 \input{lecture01.tex}
+%\input{lecture02.tex}
+\input{lecture03.tex}
 
 \end{document}

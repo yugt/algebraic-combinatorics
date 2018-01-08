@@ -1,0 +1,66 @@
+\section{Bipartite Graphs}
+Recall graph is bipartite with biparts \(x,y\) \iff
+\[ A(G)=\begin{bmatrix}0 & B \\ B^T & 0\end{bmatrix} \]
+
+\begin{lemma}
+Let \(B\) be an \(n\times n\) matrix such that \(B^TB\) has nonzero eigenvalues \(\lambda_1,\cdots,\lambda_r\) (with multiplicities), then the nonzero eigenvalues of 
+\[ A=\begin{bmatrix}0 & B \\ B^T & 0\end{bmatrix}\in\R^{(m+n)\times(m+n)} \]
+are precisely \( \sqrt{\lambda_1},-\sqrt{\lambda_1},\cdots,\sqrt{\lambda_r},-\sqrt{\lambda_r} \) (with multiplicities).
+\end{lemma}
+\begin{remark}
+The eigenvalues of \(B^TB\) are real (from symmetry) and nonnegative since if \(B^T Bx=\lambda x\) (we assume \(||x||=1\))
+\[ \lambda =\lambda x^T x= x^T (\lambda x)= x^T(B^T Bx) =(Bx)^T(Bx)=\langle Bx,Bx\rangle\geq0. \]
+\end{remark}
+\begin{proof}
+Note that
+\[ \begin{bmatrix}t I_m & -B \\ -B^T & t I_n\end{bmatrix}\begin{bmatrix} I_m & B \\ 0 & t I_n\end{bmatrix}=\begin{bmatrix}t I_m & 0 \\ -B^T & t^2 I_n-B^TB \end{bmatrix}. \]
+Take determinant gives
+\[ \phi_A(t) t^n=t^m\phi_{B^TB}(t^2) \]
+\end{proof}
+
+\begin{example}
+Let \(K_{m,n}\) be the complete bipartite graph with biparts of size \(m\) and \(n\) and all possible edges between them, then
+\[ A(K_{m,n})=\begin{bmatrix}0 & B \\ B^T & 0\end{bmatrix} \]
+where \(B\) is an \(m\times n\) all-one matrix. We have
+\[ \underbrace{B^T B}_{n\times n} = m J_n \]
+where \(J_n\) is the \(n\times n\) all-one matrix.
+Recall that \(J_n\) has exactly one nonzero eigenvalues namely \(n\), so the eigenvalues of \(K_{m,n}\) are \(\sqrt{mn},-\sqrt{mn}\) and 0 (multiplicity \(m+n-2\)).
+\end{example}
+
+\begin{example}
+Let \(C_{2n}\) be a bipartite graph with adjacency matrix 
+\[ A(C_{2n})=\begin{bmatrix}0 & B \\ B^T & 0\end{bmatrix} \]
+where \(B\in\R^{n\times n}\) \textit{e.g.}
+\[B = \begin{bmatrix}1&0&0&0&1 \\ 1&1&0&0&0 \\ 0&1&1&0&0 \\ 0&0&1&1&0 \\ 0&0&0&1&1 \end{bmatrix}\in\R^{5\times 5} \]
+We can verify that
+\[ B^T B=2I_n+\underbrace{A(C_n)}_{\begin{bmatrix}0&1&0&0&1 \\ 1&0&1&0&0 \\ 0&1&0&1&0 \\ 0&0&1&0&1 \\ 1&0&0&1&0 \end{bmatrix}} \]
+Therefore if \(\lambda_1,\cdots,\lambda_n\) are the eigenvalues of \(C_n\), then the eigenvalues of \(C_{2n}\) are
+\[ \pm\sqrt{2+\lambda_k}, \quad k=1,\cdots,n \]
+This agrees with our early calculations
+\[ \lambda_k=2\cos\left(\frac{2\pi k}{n} \right) \]
+with identity
+\[ 1+\cos(2\theta)=2\cos^2\theta \]
+\end{example}
+
+
+\begin{corollary}
+If \(G\) is bipartite graph on \(n\) vertices then \(\lambda_n(G)=-\lambda_1(G)\).
+\end{corollary}
+\begin{remark}
+A converse holds for connected graphs.
+\end{remark}
+\begin{proposition}
+If \(G\) is connected on \(n\) vertices and \(\lambda_n(G)=-\lambda_1(G)\), then \(G\) is bipartite.
+\end{proposition}
+\begin{remark}
+It's another consequence of the Perron-Frobenius theorem. We don't prove this.
+\end{remark}
+
+
+
+\section{Cartesian Products}
+
+
+
+
+
