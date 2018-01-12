@@ -17,6 +17,14 @@ Note that
 Take determinant gives
 \[ \phi_A(t) t^n=t^m\phi_{B^TB}(t^2) \]
 \end{proof}
+\begin{question}
+Why does the matrix on RHS have the determinant \(t^m\phi_{B^T B}(t)\)?
+Particularly, why is
+\[ \det\left(t^2I_n-B^T B\right)=\phi_{B^T B}\left(t^2\right)? \]
+\end{question}
+\begin{answer}
+By definition, $\phi_{B^T B}(x)=\det(x I_n-B^T B)$. Therefore, $\phi_{B^T B}(t^2)=\det(t^2 I_n - B^T B)$
+\end{answer}
 
 \begin{example}
 Let \(K_{m,n}\) be the complete bipartite graph with biparts of size \(m\) and \(n\) and all possible edges between them, then
@@ -70,9 +78,12 @@ Let \(G\) and \(H\) be graphs, the \emph{Cartesian product} \(G\square H\) has v
 
 \begin{example}
 \(P_m\square P_n\) is the \(m\times n\) rectangular lattice.
-\(P_2\square P_2\square P_2\) is the 1-skeleton of cude.
+\(P_2\square P_2\square P_2\) is the 1-skeleton of cube.
 In general, \(\underbrace{P_2\square\cdots\square P_2}_{n\text{ copies}}\) is the 1-skeleton of the \(n\)-dimensional hypercube \([0,1]^n\subset\R^{n}\)
 \end{example}
+\begin{remark}
+Cartesian product is associative.
+\end{remark}
 
 \begin{definition}[Tensor product]
 Let \(\R^m\otimes\R^n\) denote the tensor product of \(\R^m\) and \(\R^n\) which we will identify with the vector space of matrices \(\R^{m\times n}\).
@@ -87,7 +98,7 @@ Let two matrices \(A\in\R^{m\times m},B\in\R^{n\times n}\), then
 \[ (A\otimes B)_{(i,j),(k,l)}=A_{i,k}B_{j,l}, \quad (1\leq i,k\leq m,1\leq j,l\leq n) \]
 \end{lemma}
 \begin{proof}
-Rercall that the entries of a matrix \(M\in\R^{d\times d}\) are characterized by
+Recall that the entries of a matrix \(M\in\R^{d\times d}\) are characterized by
 \[ Me^{(j)}=\sum_{i=1}^{d}M_{i,j}e^{(i)} \quad \text{for } 1\leq j\leq d. \]
 \begin{align*}
 (A\otimes B)\left(e^{(k)}e^{(l)T}\right)&=A\left(e^{(k)}e^{(l)T}\right)B^T\\
@@ -98,7 +109,7 @@ Rercall that the entries of a matrix \(M\in\R^{d\times d}\) are characterized by
 \end{proof}
 
 \begin{corollary}
-Let \(G\) and \(H\) be graphs with basis of eigenvectors \(x^{(1)},\cdots,x^{(m)}\in\R^m\) and \(y^{(1)},\cdots,y^{(n)}\in\R^n\) cooresponding to eigenvalues \(\lambda_1,\cdots,\lambda_m\) and \(\mu_1,\cdots,\mu_n\), then
+Let \(G\) and \(H\) be graphs with basis of eigenvectors \(x^{(1)},\cdots,x^{(m)}\in\R^m\) and \(y^{(1)},\cdots,y^{(n)}\in\R^n\) corresponding to eigenvalues \(\lambda_1,\cdots,\lambda_m\) and \(\mu_1,\cdots,\mu_n\), then
 \[ A(G\square H)=A(G)\otimes I_n + I_m\otimes A(H) \]
 and \(G\square H\) has eigenvectors \(x^{(i)}y^{(j)T}\) corresponding to eigenvalues \(\lambda_i+\mu_j\) for \(1\leq m,1\leq j\leq n\).
 \end{corollary}
