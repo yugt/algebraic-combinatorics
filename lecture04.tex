@@ -1,0 +1,114 @@
+\section{Enumerating Walks}
+
+\begin{definition}[Walk]
+Let \(G\) be a graph.
+A \emph{walk} in \(G\) is a sequence of vertoices \((v_0,\cdots,v_l)\) such that \(v_0\sim v_1\sim v_2\sim\cdots\sim v_l\).
+We call \(l\) the \emph{length} of the walk.
+(A \emph{path} is a walk with no vertices repeated except possibly \(v_0=v_l\).)
+We call a walk \emph{closed} if \(v_0=v_l\)
+(a closed path is called cycle).
+We will consider \emph{marked closed walks}, \textit{i.e.}, closed walks whose starting vertex is distinguished (and an occurance of that vertex within the walk if it appears multiple times).
+\end{definition}
+
+\begin{example}
+Triangle has 6 marked closed walks:
+\begin{center}
+\begin{tabular}{cc}
+1 2 3 & 1 3 2\\
+2 1 3 & 2 3 1\\
+3 1 2 & 3 2 1
+\end{tabular}
+\end{center}
+\end{example}
+
+\begin{lemma}
+Let \(G\) be a graph and \(l\in\N\).
+For any \(v,w\in V(G)\), the number of walks of length \(l\) from \(v\) to \(w\) in \(G\) equals
+\[ \left(A(G)^l\right)_{v,w}, \quad (A(G)^0=I ) \]
+\end{lemma}
+\begin{proof}
+\begin{align*}
+    \left(A(G)^l\right)_{v,w}&=\sum_{u_1,\cdots,u_{l-1}\in V(G)} A(G)_{v,u_1} A(G)_{u_1,u_2}\cdots A(G)_{u_{l-2},u_{l-1}} A(G)_{u_{l-1},w}\\
+&=\sum_{u_1,\cdots,u_{l-1}\in V(G)} 1_{v\sim u_1\sim u_2\sim\cdots\sim u_{l-1}\sim w } 
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+Let \(G\) be a graph on \(n\) vertices with adjacency matrix \(A\) and \(l\in\N\).
+\begin{enumerate}[(i)]
+\item the number of marked closed walks in \(G\) of length \(l\) equals
+\[ \sum_{v\in V(G)} \left(A^l\right)_{v,v}=\mathrm{tr}\left(A^l\right)=\sum_{j=1}^{n}\lambda_j^l(G) \]
+\item the total number of walks in \(G\) of length \(l\) equals
+\[ \sum_{v,w\in V(G)} \left(A^{l}\right)_{v,w}=\text{sum of entries of }A^l \]
+\end{enumerate}
+\end{corollary}
+
+\begin{example}
+Let \(G=K_n\) the complete graph on \(n\) vertices.
+Recall that the eigenvalues of \(G\) are \(n-1,-1,-1,\cdots,-1\).\
+Hence, the number of marked closed walks of length \(l\) is
+\[ (n-1)^{l}+(n-1)(-1)^l \]
+Now let's find the total number of walks of length \(l\).
+Recall \(A(G)=J_n-I_n\).
+Therefore by binomial theorem
+\[ (J_n-I_n)^l=\sum_{d=0}^{l}\binom{l}{d}(-1)^{l-d}J_n^d \]
+By \(J_n^2=nJ_n\) anmd induction,
+\[ J_n^d=n^{d-1}J_n, \quad \forall d\geq1 \]
+So the sum of the entries of \(J_n^d\) is \(n^{d-1}n^2=n^{d+1}\) for all \(d\in\N\).
+Then the sum of entries of \(A(G)^l\), (\textit{i.e.}, number of walks of length \(l\)) is
+\[ \sum_{d=0}^l\binom{l}{d} (-1)^{l-d}{n}^{d+1}=n(n-1)^l \]
+Finally, note that by symmetry \(\left(A(G)^l\right)_{v,w}\) is the same for all distinct \(v,w\in V(G)\).
+\begin{align*}
+\left(A(G)^l\right)_{v,w}&=\frac{\text{sum of entries of }A(G)^l-\text{sum of diagonal entries of }A(G)^l}{\# \text{ of off-diagonal entries}}\\
+&=\frac{n(n-1)^l-\left[(n-1)^l+(n-1)(-1)^l\right]}{n^2-n}
+=\frac{(n-1)^l-(-1)^l}{n}
+\end{align*}
+\end{example}
+
+\begin{corollary}
+The number of triangles in a graph \(G\) is
+\[ \frac{1}{6}A(G)^3 \]
+The coefficient \(\frac{1}{6}\) comes from the fact that a triangle has 6 walks of length 3.
+\end{corollary}
+
+\begin{lemma}
+Let \(M\in\R^{n\times n}\). The sum of the entries of \(M\) is
+\[ \bar{e}^T M \bar{e}=\mathrm{tr}(MJ_n)=\det(I_n+MJ_n)-1 \]
+where \(\bar e=\begin{bmatrix} 1 & 1 & \cdots & 1 \end{bmatrix}^T\in\R^n \).
+\end{lemma}
+\begin{proof}
+We can check explicitly that \(\bar{e}^TM\bar{e}\) is the sum of entries.
+\begin{enumerate}[(i)]
+\item \[ \underbrace{\bar{e}^TM\bar{e}}_{1\times1}=\mathrm{tr}\left(\bar{e}^TM\bar{e} \right)=\mathrm{tr}\left(M\bar{e}\bar{e}^T \right)=\mathrm{tr}(MJ_n) \]
+\item Note that \(\mathrm{rank}(MJ_n)\leq1\).
+For any matrix \(N\in\R^{n\times n}\) of rank at most 1, we have the \emph{Sherman-Morrison identity}
+\[ \det(I_n+N)=1+\mathrm{tr}(N) \]
+This is true since \(N\) has at most one nonzero eigenvalue \(\lambda\) and both sides equal to \(1+\lambda\).
+\end{enumerate}
+\end{proof}
+
+\section{Walk Generating Functions}
+\begin{definition}[ordinary generating function]
+The \emph{ordinary generating function} (ogf) of the sequence \((a_l)_{l\in\N}\) is the formal power series
+\[ \sum_{l=0}^\infty a_l t^l \]
+It is called ordinary to distinguish from the \emph{exponential generating function}
+\[ \sum_{l=0}^\infty \frac{a_l}{l!} t^l \]
+\end{definition}
+Recall the geometric series formula
+\[ \sum_{l=0}^\infty t^l=\frac{1}{1-t} \]
+We can think of \(\frac{1}{1-t}\) as a rational function of \(t\), or as the inverse of the formal power series \(1-t\).
+More generally,
+\[ \sum_{l=0}^\infty (tA)^l=(I_n-tA)^{-1} \]
+
+
+\begin{definition}
+Let \(G\) be a graph of \(n\) vertices with adjacency matrix \(A\).
+\begin{enumerate}[(i)]
+\item For \(v,w\in V(G)\), let \(W_{v,w}^G(t)\) denote the ordinary generating function for number of walks from \(v\) to \(w\) with respect to lenth.
+\[ W_{v,w}^G(t)=\sum_{l=0}^\infty (A^l)_{v,w}t^l=\left((I_n-tA)^{-1}\right)_{v,w} \]
+\item Let \(W_{\text{closed}}^G(t)\) denote the ordinary generating function for marked closed walks in \(G\) with respect to lenth.
+\[ W_{\text{closed}}^G(t)=\sum_{l=0}^\infty \mathrm{tr}(A^l)t^l=\mathrm{tr}\left((I_n-tA)^{-1}\right) \]
+\item Let \(W_{\text{all}}^G(t)\) denote the ordinary generating function for all walks in \(G\) with respect to lenth.
+\[ W_{\text{all}}^G(t)=\sum_{l=0}^\infty \underbrace{\mathrm{tr}(A^lJ_n)}_{\text{sum of entries of }A^l}t^l=\mathrm{tr}\left((I_n-tA)^{-1}J_n\right) \]
+\end{enumerate}
+\end{definition}
