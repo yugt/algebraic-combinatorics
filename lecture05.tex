@@ -1,0 +1,14 @@
+\begin{example}
+Recall 
+\[ \tr\left({A(K_n)^l}\right)=(n-1)^l+(n-1)(-1)^l \]
+Therefore,
+\begin{align*}
+W_\text{closed}^{K_n}(t)&=\sum_{l=0}^\infty\left[(n-1)^l+(-1)^l(n-1)\right]t^l\\
+&=\frac{1}{1-(n-1)t}+(n-1)\frac{1}{1-t}
+\end{align*}
+\end{example}
+
+\begin{theorem}
+Let \(G\) be a graph with \(n\) vertices.
+\[ W_\text{closed}^G(t)=\tr\left((I_n-tA(G))^{-1}\right)=\sum_{j=1}^n\frac{1}{1-t\lambda_j(G)}=\frac{\phi'_G\left(\frac{1}{t}\right)}{t\phi_G\left(\frac{1}{t}\right)} \]
+\end{theorem}
