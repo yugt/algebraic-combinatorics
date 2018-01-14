@@ -12,3 +12,90 @@ W_\text{closed}^{K_n}(t)&=\sum_{l=0}^\infty\left[(n-1)^l+(-1)^l(n-1)\right]t^l\\
 Let \(G\) be a graph with \(n\) vertices.
 \[ W_\text{closed}^G(t)=\tr\left((I_n-tA(G))^{-1}\right)=\sum_{j=1}^n\frac{1}{1-t\lambda_j(G)}=\frac{\phi'_G\left(\frac{1}{t}\right)}{t\phi_G\left(\frac{1}{t}\right)} \]
 \end{theorem}
+\begin{proof}
+The eigenvalues of \(A(G)\) are \(\lambda_1,\lambda_2,\cdots,\lambda_n\), so the eigenvalues of \((I_n-tA(G))^{-1}\) are
+\[ (1-t\lambda_1(G))^{-1}, \cdots, (1-t\lambda_n(G))^{-1}\]
+Thus,
+\[ \tr\left((I_n-tA(G))^{-1}\right)=(1-t\lambda_1(G))^{-1}+\cdots+(1-t\lambda_n(G))^{-1} \]
+On the other hand,
+\begin{align*}
+\frac{\phi'_G\left(\frac{1}{t}\right)}{t\phi_G\left(\frac{1}{t}\right)}&=
+\frac{1}{t}\left.\frac{\mathrm{d}}{\mathrm{d} s}\right|_{s=\frac{1}{t}}\log \phi_G(s)\\
+&=\frac{1}{t}\left.\frac{\mathrm{d}}{\mathrm{d} s}\right|_{s=\frac{1}{t}}\log[(s-\lambda_1(G))\cdots(s-\lambda_n(G))]\\
+&=\frac{1}{t}\left.\left(\frac{1}{s-\lambda_1(G)}+\cdots+\frac{1}{s-\lambda_n(G)} \right)\right|_{s=\frac{1}{t}}\\
+&=\frac{1}{1-t\lambda_1(G)}+\cdots+\frac{1}{1-t\lambda_n(G)}
+\end{align*}
+Alternative proof using the identity
+\[ \tr(\log(A))=\log(\det(A)) \]
+as functions on matrices.
+\end{proof}
+
+
+\begin{example}
+Let \(G=K_n\), then
+\begin{align*}
+\phi_{K_n}(t)&=(t-(n-1))(t+1)^{n-1}\\
+\phi'_{K_n}(t)&=(t+1)^{n-2}(tn-n^2+2n)
+\end{align*}
+Then
+\begin{align*}
+W_\text{closed}^{K_n}(t)=\frac{\left(1+\frac{1}{t}\right)^{n-2}\left(\frac{n}{t} -n^2+2n\right)}{t\left(\frac{1}{t}-(n-1)\right)\left(\frac{1}{t}+1\right)}
+\end{align*}
+\end{example}
+
+
+\section{Asymptotic Behavior}
+\begin{theorem}
+Let \(G\) be a connected non-bipartite graph with largest eigenvalue \(\lambda_1\) corresponding to an eigenvector \(x\) with \(||x||=1\).
+(recall from the Perron-Frobenius theorem that \(|\lambda_j(G)|<\lambda_1\) for all \(j>1\)), then
+\[ \lim_{l\to\infty}\frac{A(G)^l}{\lambda_1^l}=xx^T \]
+In particular, for all \(v,w\in G\)
+\[ A(G)_{v,w}^l\sim \lambda_1^l x_v x_w \]
+\end{theorem}
+\begin{proof}
+Let's assume that \(V(G)=[n]\).
+Let \(x^{(1)},x^{(2)},\cdots,x^{(n)}\in\R^n\) be an orthonormal basis of eigenvectors of \(A(G)\) corresponding to eigenvalues \(\lambda,\lambda_2,\cdots,\lambda_n\).
+Recall that
+\[ A(G)=\sum_{j=1}^{n}\lambda_j x^{(j)} x^{(j)T} \]
+Since \(x^{(i)T}x^{(j)}=\delta_{ij}\), we get
+\[ A(G)^l=\sum_{j=1}^{n}\lambda_j^l x^{(j)} x^{(j)T} \]
+Therefore,
+\[ \frac{A(G)^l}{\lambda_1^l}=xx^T+\sum_{j=2}^{n}\left(\frac{\lambda_j}{\lambda_1}\right)^lx^{(j)} x^{(j)T} \]
+Since \(|\lambda_j|<\lambda_1\) for \(j>1\), we get
+\[ \lim_{l\to\infty}\frac{A(G)^l}{\lambda_1^l}=xx^T \]
+\end{proof}
+\begin{remark}
+\begin{enumerate}
+\item Connected: \(\lambda_1\) has multiplicity 1.
+\item Non-bipartite: \(-\lambda_1\) not an eigenvalue.
+\end{enumerate}
+For connected bipartite graphs, we have the following
+\[ A(G)^l_{v,w}=\begin{cases}0 & l\not\equiv d(v,w) \mod 2 \\ \sim 2\lambda_1^l x_v x_w & l\equiv d(v,w) \mod 2  \end{cases} \]
+\end{remark}
+
+\begin{example}
+Consider \(G=P_n\), which is connected and bipartite.
+Recall the eigenvalues of \(G\) are
+\[ \lambda_k=2\cos\left(\frac{\pi k}{n+1}\right) \quad k=1,\cdots,n \]
+We can check that an eigenvector \(x\in\R^n\) with \(||x||=1\) corresponding to \(\lambda_1=2\cos\left(\frac{\pi}{n+1}\right)\) is given by
+\[ x_j=\sqrt{\frac{2}{n+1}}\sin\left(\frac{\pi j}{n+1}\right) \]
+(entries bigger if closer to the middle of the path).
+An eigenvector \(y\in\R^n\) with \(||y||=1\) corresponding to \(-\lambda_1\) is given by
+\[ y_j=(-1)^{j-1}x_j \quad j=1,\cdots,n \]
+Hence, as \(l\to\infty\), we have
+\[ \left(A(G)^l\right)_{ij}=\begin{cases}0 & l\not\equiv |i-j| \mod 2 \\ \sim 2\left(2\cos\left(\frac{\pi}{n+1}\right)^l \right)\left(\frac{2}{n+1}\right)\sin\left(\frac{\pi i}{n+1}\right)\sin\left(\frac{\pi j}{n+1}\right) & l\equiv |i-j| \mod 2  \end{cases} \]
+Why does \(||x||=1\)?
+\[ \sum_{j=1}^{n}\sin^2\left(\frac{\pi j}{n+1}\right)=\frac{1}{2}\sum_{j=0}^{2n+1}\sin^2\left(\frac{\pi j}{n+1}\right) \]
+Recall
+\[ \sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2i} \]
+Letting \(\rho=\frac{2\pi i}{2n+2}\),
+\[ \sin\left(\frac{j\pi}{n+1}\right)=\frac{\rho^j-\rho^{-j}}{2i} \]
+Thus,
+\begin{align*}
+\frac{1}{2}\sum_{j=0}^{2n+1}\sin^2\left(\frac{\pi j}{n+1}\right)&=
+\frac{1}{2}\sum_{j=0}^{2n+1}\left(\frac{\rho^j-\rho^{-j}}{2i}\right)\\
+&=\frac{1}{2}\sum_{j=0}^{2n+1}\left(\frac{\rho^{2j}-2+\rho^{-2j}}{-4}\right)\\
+&=-\frac{1}{8}\left(\underbrace{\sum_{j=0}^{2n+1}\rho^{2j}}_{=0}+\underbrace{\sum_{j=0}^{2n+1}-2}_{=-2(2n+2)}+\underbrace{\sum_{j=0}^{2n+1}\rho^{-2j}}_{=0} \right)\\
+&=\frac{n+1}{2}
+\end{align*}
+\end{example}
