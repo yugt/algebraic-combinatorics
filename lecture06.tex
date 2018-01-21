@@ -1,0 +1,133 @@
+\section{Graph Homomorphisms}
+\begin{definition}
+Let $G$ and $H$ be graphs. We say that $\phi:V(G)\to V(H)$ is a homomorphism if for all $v,w\in V(G),v\sim w\implies \phi(v)\sim \phi(w)$. We call $\phi$ an isomorphism if $\phi$ is a bijection and its inverse $\phi^{-1}$ is also a homomorphism. 
+\end{definition}
+\begin{definition}[Automorphism]
+An automorphism of $G$ is an isomorphism from $G$ to $G$.
+
+\textit{Note: $(Aut(G), \circ)$ forms a group.}
+\end{definition}
+
+Let $\mathfrak{S}(V)$ denote the symmetric group of all permutations (i.e. bijections) of the set $V$ (We also let $\mathfrak{S}_n$ denote the symmetric group of permutations of $[n]=\{ 1,2,...,n \}$). $Aut(G)$ is a subgroup of $\mathfrak{S}(V(G))$.
+
+\begin{example}
+$\mathrm{Aut(K_n)} = \mathfrak{S}_n$,
+$\mathrm{Aut(C_n)} = D_n$(the dihedral group of order $2n$ of rotations and reflections of a regular $n-$gon).
+\end{example}
+
+\begin{theorem}[Lie Theory]
+Miss this part...
+\end{theorem}
+
+\begin{example}
+$n\geq 2$, $P_n$ has 2 automorphism (the identity map and the map that reflects the path about its center).
+\end{example}
+
+\begin{definition}[m-coloring]
+m-coloring of $G$ is labeling a graph by $\varphi(V) \in [m]$. An m-coloring is called \textbf{proper} if no two adjacent vertices are given the same color, i.e.,$\varphi \text{ is proper } \Leftrightarrow \varphi\text{ is homomorphism form }G \text{ to }K_m$.
+\end{definition}
+
+\begin{definition}
+A permutation matrix is a square $\{0,1\}$ matrix with exactly one $1$ in every row and column. For each permutation $\pi\in\mathfrak{S}_n$. Let $P(\pi)$ denote the $n\times n$ permutation matrix where $j^{\textrm{th}}$ column has a $1$ in row $\pi(j)$ for all $j\in[n]$.
+\end{definition}
+\begin{example}
+Let $\pi=\begin{pmatrix}
+1&2&3\\
+2&3&1
+\end{pmatrix}$, $\sigma=\begin{pmatrix}
+1&2&3\\
+2&1&3
+\end{pmatrix}$. Then 
+\[P(\pi)=\begin{pmatrix}
+0&0&1\\
+1&0&0\\
+0&1&0
+\end{pmatrix},\qquad 
+P(\sigma)=\begin{pmatrix}
+0&1&0\\
+1&0&0\\
+0&0&1
+\end{pmatrix}.\]
+Note that $P(\pi)P(\sigma)=P(\pi\sigma).$ Let $P_n$ be the set of all $n\times n$ permutation matrices. Then it's easy to verify that $P_n\leq \mathrm{GL}_n(\mathbb{R})$ and $P_n\cong \mathfrak{S}_n$.
+\end{example}
+
+\begin{definition}
+Define the sign or signature $\mathrm{sgn}(\pi)$ of $\pi\in\mathfrak{S}_n$ by $\mathrm{sgn}(\pi)=\det(P(\pi))$.
+\end{definition}
+
+\begin{lemma}
+Let $\pi\in\mathfrak{S}_n$, then
+\begin{enumerate}[(i)]
+\item If $\pi$ can be represented as a product of $m$ transpositions, then $\mathrm{sgn}(\pi)=(-1)^m$.
+\item $\mathrm{sgn}(\pi) = (-1)^{\#\, i<j:\pi(j)>\pi(i)}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}[(i)]
+\item Using multiplicativity of the determinant, it suffices to prove that every transposition has sign $-1$. This is true since the permutation matrix of a transposition is
+\[
+\begin{pmatrix}
+0&1&0&\cdots&0\\
+1&0&0&\cdots&0\\
+0&0&1&\cdots&0\\
+\vdots &\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\cdots&1
+\end{pmatrix}
+,\]
+up to a permutation of the basis vectors.
+\item Check that 
+\begin{enumerate}
+\item $\mathrm{sgn}(\mathrm{id})=1$.
+\item \color{red}Not clear how did the professor prove this. 
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+$\mathrm{sgn}\begin{pmatrix}
+1&2&3\\
+2&3&1
+\end{pmatrix}=1$
+\end{example}
+
+\begin{proposition}
+Let $G$ and $H$ be graphs on the vertex set $[n]$ and $\pi\in\mathfrak{S}_n$. Then $\pi$ is an isomorphism from $G$ to $H$ if and only if 
+ \[A(G)=P(\pi)^{-1}A(H)P(\pi).\]
+\end{proposition}
+\begin{proof}
+Note that $(P(\pi)^{-1}A(H)P(\pi))_{i,j}=A(H)_{\pi(i),\pi(j)}.$ Therefore we have an equivalence chain,
+\begin{align*}
+&A(G)=P(\pi^{-1})A(H)P(\pi)\\
+\Longleftrightarrow\quad & A(G)_{i,j}=A(H)_{\pi(i),\pi(j)}\\
+\Longleftrightarrow\quad & (i\sim j\,\Longleftrightarrow\,\pi(i)\sim\pi(j))\\
+\Longleftrightarrow\quad &\pi \textrm{ is an isomorphism}
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+The automorphisms of a graph $G$ correspond to permutation matrices $P$ satisfying $A(G)=P^{-1}A(G)P$.
+\end{corollary}
+
+\begin{theorem}
+Suppose that the eigenvalues of $G$ are all distinct. Then every automorphism of $G$ has order at most $2$.
+\end{theorem}
+
+\begin{proof}
+Let $A=A(G)\in\mathbb{R}^{n\times n}$. Every automorphism of $G$ corresponds to a permutation matrix $P$ with $AP=PA$. We must show that $P^2=I_n$.
+
+Let $\lambda_1,\ldots,\lambda_n\in\mathbb{R}$ be the eigenvalues of $A$ with eigenbasis $x^{(1)},\ldots,x^{(n)}\in\mathbb{R}^n$. Then for $i\in[n]$, we have 
+\begin{align*}
+&AP=PA\implies APx^{(i)}=PAx^{(i)}\implies A(Px^{(i)})=\lambda_i Px^{(i)}
+\implies  Px^{(i)}=\mu_i x^{(i)}
+\end{align*}
+Since $P^{n!}=I_n$, $(\mu_i)^{n!}=1$. Thus $\mu_i=\pm 1$. We get $P^2x^{(i)}=\mu_i^2x^{(i)}=x^{(i)}$ for all $i\in[n]$. Since $\{x^{(i)}\}$ forms a basis of $\mathbb{R^n}$, $P^2$ is $I_n$.
+\end{proof}
+\begin{remark}
+in fact, almost all graphs have a trivial automorphism group, i.e.
+\[\lim_{n\to\infty}\frac{\#\textrm{graphs $G$ with $V(G)=[n]$ and $\left|\mathrm{Aut}(G)\right|=1$}}{\#\textrm{graphs $G$ with $V(G)=[n]$}}=1.\]
+See section 2.3 of Godsil-Royle for a proof.
+\end{remark}
+\begin{remark}[Graph Isomorphic Problem]
+Babai\& Luks(1983)  $2^{O(\sqrt{n\log n})}$, Babai(2017)  $2^{O((\log n)^c)}$.
+\end{remark}

@@ -14,6 +14,12 @@ The \emph{adjacency matrix} \( A(G)=\{0,1\}^{V\times V} \) is defined by
 Recall the characteristic polynomial of a square matrix \(M\) over \C
 \[ \phi_M(t)\coloneqq \det(tI-M). \]
 
+\begin{question}
+Is a graph discussed in the lecture (and homework) always simple?
+\end{question}
+\begin{answer}
+Yes. (According to the instructor).
+\end{answer}
 
 \begin{definition}[Characteristic polynomial]
 Let \(G=(V,E)\) be a finite graph.
@@ -108,7 +114,7 @@ A graph \(G=(V,E)\) is called \emph{\(k\)-regular} if every vertex has degree \(
 
 \begin{proposition}
 Let \(G=(V,E)\), then
-\[ \E_{v\in V(G)} \deg_G(v) \stackrel{(i)}{\leq} \lambda_1(G) \stackrel{(ii)}{\leq} \max_{v\in V(G)}\deg_G(V), \]
+\[ \E_{v\in V(G)} \deg_G(v) \stackrel{(i)}{\leq} \lambda_1(G) \stackrel{(ii)}{\leq} \max_{v\in V(G)}\deg_G(v), \]
 where the \emph{expectation of the degree} is defined to be
 \[ \E_{v\in V(G)} \deg_G(v)\coloneqq\frac{1}{n}\sum_{v\in V(G)}\deg_G(v). \]
 We have equality in (i) \iff \(G\) is regular.
