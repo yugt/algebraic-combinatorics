@@ -1,1 +1,32 @@
 % Friday 1.19
+\section{Expander Graphs}
+Vaguely speaking, an expander graph is a sparse graph (\textit{i.e.}, it has few edges) which is nonetheless highly connected.
+Expander graphs have applications to
+\begin{itemize}
+\item constructing error-correcting codes
+\item derandomize algorithms
+\item serve methods in number theory
+\item hyperbolic manifolds
+\end{itemize}
+
+\begin{definition}[edge expansion ratio]
+Lety \(G\) be a graph.
+For \(S\subseteq V(G)\) denote the set of edges with one endpoint in \(S\) and one endpoint not in \(S\) by \(\partial S\).
+Define the edge expansion ratio
+\[ h(G)\coloneqq \min_{\substack{S\subseteq V(G)\\|S|\leq|V(G)|/2}} \frac{|\partial S|}{|S|} \]
+\end{definition}
+\begin{definition}
+A sequence of \(k\)-regular graphs \((G_n)_{n\in\N}\) is called a family of expander graphs if
+\[ |V(G_0)|<|V(G_1)|<\cdots \]
+and there exists \(\varepsilon>0\) such that \(h(G_n)\geq0,\forall n\in\N\).
+\end{definition}
+\begin{remark}
+It's relatively easy to show that such families exist by probabilistic arguments, but it's relatively difficult to construct them explicitly.
+\end{remark}
+\begin{theorem}
+Suppose \(G\) is connected and \(k\)-regular so \(\lambda_1(G)=k\), then
+\[ \frac{k-\lambda_2(G)}{2}\leq h(G)\leq \sqrt{2k(k-\lambda_2(G))} \]
+\end{theorem}
+Therefore a family \((G_n)_{n\in\N}\) of \(k\)-regular graphs with \(|V(G_0)|<|V(G_1)|<\cdots\) forms a family of expander graphs \iff there exists \(\varepsilon'>0\) such that
+\[ k=\lambda_2(G_n)\geq\varepsilon' \quad \forall n\in\N \]
+The spectral gap \(k-\lambda_2(G)\) or sometimes \( \min\{|k-\lambda_2{G}|,k-|\lambda_n(G)|\} \) measures how rapidly a random walk on \(G\) mixes.
