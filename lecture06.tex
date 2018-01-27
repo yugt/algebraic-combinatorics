@@ -1,6 +1,10 @@
 \section{Graph Homomorphisms}
 \begin{definition}
-Let $G$ and $H$ be graphs. We say that $\phi:V(G)\to V(H)$ is a homomorphism if for all $v,w\in V(G),v\sim w\implies \phi(v)\sim \phi(w)$. We call $\phi$ an isomorphism if $\phi$ is a bijection and its inverse $\phi^{-1}$ is also a homomorphism. 
+Let $G$ and $H$ be graphs. We say that $\phi:V(G)\to V(H)$ is a homomorphism if
+\[ \forall v,w\in V(G), \quad v\sim_{G} w\implies \phi(v)\sim_{H} \phi(w). \]
+We call $\phi$ an isomorphism if $\phi$ is a bijection and its inverse $\phi^{-1}$ is also a homomorphism.
+If \(\phi\) is a bijection, it is an isomorphism \iff
+\[ \forall v,w\in V(G),\quad v\sim_{G} w \Longleftrightarrow \phi(v)\sim_{H} \phi(w) \]
 \end{definition}
 \begin{definition}[Automorphism]
 An automorphism of $G$ is an isomorphism from $G$ to $G$.
@@ -12,7 +16,7 @@ Let $\mathfrak{S}(V)$ denote the symmetric group of all permutations (i.e. bijec
 
 \begin{example}
 $\mathrm{Aut(K_n)} = \mathfrak{S}_n$,
-$\mathrm{Aut(C_n)} = D_n$(the dihedral group of order $2n$ of rotations and reflections of a regular $n-$gon).
+$\mathrm{Aut(C_n)} = D_n$(the dihedral group of order $2n$ of rotations and reflections of a regular $n$-gon).
 \end{example}
 
 \begin{theorem}[Lie Theory]
@@ -23,8 +27,9 @@ Miss this part...
 $n\geq 2$, $P_n$ has 2 automorphism (the identity map and the map that reflects the path about its center).
 \end{example}
 
-\begin{definition}[m-coloring]
-m-coloring of $G$ is labeling a graph by $\varphi(V) \in [m]$. An m-coloring is called \textbf{proper} if no two adjacent vertices are given the same color, i.e.,$\varphi \text{ is proper } \Leftrightarrow \varphi\text{ is homomorphism form }G \text{ to }K_m$.
+\begin{definition}[\(m\)-coloring]
+\(m\)-coloring of a graph $G$ is a labeling of its vertices by a color $\varphi(V) \in [m]$.
+An \(m\)-coloring is called \textbf{proper} if no two adjacent vertices are given the same color, i.e.,\(\varphi \text{ is proper }\) \iff \(\varphi\text{ is homomorphism form }G \text{ to }K_m\).
 \end{definition}
 
 \begin{definition}
@@ -129,5 +134,9 @@ in fact, almost all graphs have a trivial automorphism group, i.e.
 See section 2.3 of Godsil-Royle for a proof.
 \end{remark}
 \begin{remark}[Graph Isomorphic Problem]
-Babai\& Luks(1983)  $2^{O(\sqrt{n\log n})}$, Babai(2017)  $2^{O((\log n)^c)}$.
+\begin{flushleft}\end{flushleft}
+\begin{itemize}
+\item Babai\& Luks(1983)  $2^{O(\sqrt{n\log n})}$
+\item Babai(2017)  $2^{O((\log n)^c)}$
+\end{itemize}
 \end{remark}
