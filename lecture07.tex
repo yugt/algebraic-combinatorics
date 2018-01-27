@@ -30,3 +30,18 @@ Suppose \(G\) is connected and \(k\)-regular so \(\lambda_1(G)=k\), then
 Therefore a family \((G_n)_{n\in\N}\) of \(k\)-regular graphs with \(|V(G_0)|<|V(G_1)|<\cdots\) forms a family of expander graphs \iff there exists \(\varepsilon'>0\) such that
 \[ k=\lambda_2(G_n)\geq\varepsilon' \quad \forall n\in\N \]
 The spectral gap \(k-\lambda_2(G)\) or sometimes \( \min\{|k-\lambda_2{G}|,k-|\lambda_n(G)|\} \) measures how rapidly a random walk on \(G\) mixes.
+
+
+
+\chapter{Tilings, Spanning Trees and Electrical Networks}
+\begin{itemize}
+\item motivation (and some results) come from Physics, Chemistry and Computer Science.
+\end{itemize}
+
+\section{Tilings and Perfect Matchings}
+We'll prove tthe following theorems.
+\begin{theorem}[Kasteleyn (1961)]
+Let \(m,n\in\N\) be such that \(mn\) is even.
+The number of domino tilings of an \(m\times n\) board equals
+\[ T(m,n)=\prod_{j=1}^{m}\prod_{k=1}^n \left(4\cos^2\left(\frac{\pi j}{m+1}\right) + 4\cos^2\left(\frac{\pi k}{n+1}\right)\right)^{\frac{1}{4}} \]
+\end{theorem}
