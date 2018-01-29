@@ -39,9 +39,16 @@ The spectral gap \(k-\lambda_2(G)\) or sometimes \( \min\{|k-\lambda_2{G}|,k-|\l
 \end{itemize}
 
 \section{Tilings and Perfect Matchings}
-We'll prove tthe following theorems.
+We'll prove the following theorems.
 \begin{theorem}[Kasteleyn (1961)]
 Let \(m,n\in\N\) be such that \(mn\) is even.
 The number of domino tilings of an \(m\times n\) board equals
 \[ T(m,n)=\prod_{j=1}^{m}\prod_{k=1}^n \left(4\cos^2\left(\frac{\pi j}{m+1}\right) + 4\cos^2\left(\frac{\pi k}{n+1}\right)\right)^{\frac{1}{4}} \]
 \end{theorem}
+
+\begin{definition}[Perfect matching]
+A \emph{perfect matching} of a graph \(G\) is a subset of its edges which meets every vertex exactly once.
+\end{definition}
+\begin{remark}
+Only graphs with even number of vertices can have a perfect matching.
+\end{remark}
