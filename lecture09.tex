@@ -14,7 +14,7 @@ $$T(m,n)=\prod_{j=1}^{m}\prod_{k=1}^n(4\cos^2(\frac{\pi j}{m+1})+4\cos^2(\frac{\
 \end{theorem}
 \begin{proof}
 Any two domino tilings are related by a sequence of flips.
-\begin{figure}[h!]
+\begin{figure}[ht!]
 \centering
 \begin{tikzpicture}[baseline=(current bounding box.center)]
     \pgfmathsetmacro{\r}{0.60};
@@ -49,7 +49,7 @@ Then we have the number of perfect matchings
 
 \end{proof}
 
-\subsection{Asymptotic of $T(m,n)$}
+\subsection{Asymptotic of \texorpdfstring{$T(m,n)$}{T(m,n)}}
 We have
 \begin{align*}
 \dfrac{\log (T(m,n))}{mn} &= \dfrac{1}{mn} \log \prod_{j=1}^{m}\prod_{k=1}^n(4\cos^2(\frac{\pi j}{m+1})+4\cos^2(\frac{\pi k}{n+1}))^{\frac{1}{4}}\\
