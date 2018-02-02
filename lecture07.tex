@@ -33,7 +33,7 @@ The spectral gap \(k-\lambda_2(G)\) or sometimes \( \min\{|k-\lambda_2{G}|,k-|\l
 
 
 
-\chapter{Tilings, Spanning Trees and Electrical Networks}
+\chapter[Tilings and Spanning Trees]{Tilings, Spanning Trees and Electrical Networks}
 \begin{itemize}
 \item motivation (and some results) come from Physics, Chemistry and Computer Science.
 \end{itemize}
@@ -45,6 +45,17 @@ Let \(m,n\in\N\) be such that \(mn\) is even.
 The number of domino tilings of an \(m\times n\) board equals
 \[ T(m,n)=\prod_{j=1}^{m}\prod_{k=1}^n \left(4\cos^2\left(\frac{\pi j}{m+1}\right) + 4\cos^2\left(\frac{\pi k}{n+1}\right)\right)^{\frac{1}{4}} \]
 \end{theorem}
+\begin{example}
+\(\pi(2,3)\) has 3 tilings.
+\begin{figure}[h]
+    % Add graph
+    \caption{Three tilings of \(\pi(2,3)\)}
+\end{figure}
+\end{example}
+\begin{remark}
+If \(m,n\) both odd, there's no domino tilings of an \(m\times n\) board.
+\end{remark}
+
 
 \begin{definition}[Perfect matching]
 A \emph{perfect matching} of a graph \(G\) is a subset of its edges which meets every vertex exactly once.
@@ -52,3 +63,10 @@ A \emph{perfect matching} of a graph \(G\) is a subset of its edges which meets 
 \begin{remark}
 Only graphs with even number of vertices can have a perfect matching.
 \end{remark}
+\begin{example}
+\(K_4\) has 3 perfect matchings. Each of them are rotated from anther.
+\begin{figure}[h]
+    % Add graph
+    \caption{Three perfect matchings of \(K_4\)}
+\end{figure}
+\end{example}
