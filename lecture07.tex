@@ -33,7 +33,8 @@ The spectral gap \(k-\lambda_2(G)\) or sometimes \( \min\{|k-\lambda_2{G}|,k-|\l
 
 
 
-\chapter[Tilings and Spanning Trees]{Tilings, Spanning Trees and Electrical Networks}
+\chapter[Tilings \& Spanning Trees]{Tilings, Spanning Trees and Electrical Networks}
+
 \begin{itemize}
 \item motivation (and some results) come from Physics, Chemistry and Computer Science.
 \end{itemize}
@@ -61,12 +62,67 @@ If \(m,n\) both odd, there's no domino tilings of an \(m\times n\) board.
 A \emph{perfect matching} of a graph \(G\) is a subset of its edges which meets every vertex exactly once.
 \end{definition}
 \begin{remark}
-Only graphs with even number of vertices can have a perfect matching.
+\begin{flushleft}\end{flushleft}
+\begin{itemize}
+    \item Only graphs with even number of vertices can have a perfect matching.
+    \item Note that domino tiling of an \(m\times n\) board correspond to perfect matchings of the \(m\times n\) grid \(P_m\square P_n\).
+\end{itemize}
 \end{remark}
 \begin{example}
 \(K_4\) has 3 perfect matchings. Each of them are rotated from anther.
-\begin{figure}[h]
+\begin{figure}[ht]
     % Add graph
     \caption{Three perfect matchings of \(K_4\)}
 \end{figure}
 \end{example}
+We will present a general method for conducting perfect matchings of certain graphs due to Kasteleyn, called Pfaffian method.
+
+\section{Skew-Symmetric Matrices}
+\begin{definition}[skew-symmetric matrix]
+A matrix \(A\in\R^{n\times n}\) is called \emph{skew symmetric} if
+\[ A^T=-A. \]
+\end{definition}
+\begin{remark}
+Note that for skew-symmetric \(A\),
+\[ \det(A)=\det(A^T)=\det(-A)=(-1)^n\det(A) \]
+Therefore if \(n\) is odd, \(\det(A)=0\).
+However, if \(n\) is even, \(\det(A)\) is a perfect square in the entries of \(A\).
+\end{remark}
+\begin{example}
+\[ \det\begin{bmatrix}0 & a & b & c \\ -a & 0 & d & e \\ -b & -d & 0 & f \\ -c & -e & -f & 0 \end{bmatrix}=(af-be+cd)^2=\text{Pfaffian}^2 \]
+\end{example}
+\begin{definition}[Pfaffian]
+Let \(A\in\R^{2n\times 2n}\) be skew-symmetric. We define the \emph{Pfaffian} of \(A\)
+\[ \mathrm{pf}(A)\coloneqq \sum_{\substack{\text{perfect matching of }K_{2n}\\ M=\{\{i_1,j_1\},\cdots,\{i_n,j_n\}\} }} \mathrm{sgn}\begin{pmatrix} 1&2&3&4&\cdots&2n-1&2n\\ i_1&j_1&i_2&j_2&\cdots&i_n&j_n\end{pmatrix}\prod_{r=1}^n A_{i_r,j_r} \]
+\end{definition}
+\begin{example}
+Let \(A\in\R^{4\times4}\) be skew-symmetric, then
+\begin{align*}
+    \mathrm{pf}(A)&=\mathrm{sgn}\begin{pmatrix} 1&2&3&4\\ 1&2&3&4\end{pmatrix}A_{1,2}A_{3,4}\\
+    &+\mathrm{sgn}\begin{pmatrix} 1&2&3&4\\ 1&3&2&4\end{pmatrix}A_{1,3}A_{2,4}\\
+    &+\mathrm{sgn}\begin{pmatrix} 1&2&3&4\\ 1&4&2&3\end{pmatrix}A_{1,4}A_{2,3}\\
+    &=A_{1,2}A_{3,4}-A_{1,3}A_{2,4}+A_{1,4}A_{2,3}
+\end{align*}
+\end{example}
+\begin{remark}
+Why is the Pfaffian well-defined?
+\begin{enumerate}[(a)]
+    \item the M-term does not change if we swap the order of a given edge
+    \[ \{i_r,j_r\} \longleftrightarrow \{j_r,i_r\} \]
+    \begin{itemize}
+        \item \(\mathrm{sgn}\begin{pmatrix} \cdots&2r-1&2r&\cdots \\ \cdots&i_r&j_r&\cdots \end{pmatrix}=-\mathrm{sgn}\begin{pmatrix} \cdots&2r-1&2r&\cdots \\ \cdots&j_r&i_r&\cdots \end{pmatrix} \)
+        \item \(A_{i_r,j_r}=-A_{j_r,i_r}\)
+    \end{itemize}
+    \item the M-term does not change if we swap two consequtive edges
+    \[ \{i_r,j_r\} \longleftrightarrow \{i_{r+1},j_{r+1}\} \]
+    \begin{itemize}
+    \item \(\mathrm{sgn}\begin{pmatrix} \cdots&2r-1&2r&2r+1&2r+2&\cdots \\ \cdots&i_r&j_r&i_{r+1}&j_{r+1}&\cdots \end{pmatrix} \)
+    \item unchanged
+    \begin{question}
+        This part is not clear enough.
+    \end{question}
+\end{itemize}
+\end{enumerate}
+So we can compute
+\[ \mathrm{pf}(A)=\underbrace{\frac{1}{2^nn!}}_{\substack{\text{there are }\frac{(2n)!}{2^nn!}\\ \text{ perfect matchings}}}\sum_{\pi\in\mathfrak{S}_{2n}} \mathrm{sgn}(\pi)\prod_{i=1}^{2n}A_{\pi(2i-1),\pi(2i)} \]
+\end{remark}
