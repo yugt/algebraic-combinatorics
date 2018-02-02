@@ -1,18 +1,29 @@
+
 \begin{theorem}
-$$N(a,b,c) = \Pi_{i=1}^a\Pi_{j=1}^b\Pi_{k=1}^c \dfrac{i+j+k-1}{i+j+k-2}$$
+$$N(a,b,c) = \prod_{i=1}^a\prod_{j=1}^b\prod_{k=1}^c \dfrac{i+j+k-1}{i+j+k-2}$$
 \end{theorem}
 \begin{proof}
 We will apply Jacobi's Identity:
 $$\det(A)\det(A_{[2,n-1][2,n-1]})=\det(A_{[2,n][2,n]})\det(A_{[1,n-1][1,n-1]}) - \det(A_{[2,n][1,n-1]})\det(A_{[1,n-1][2,n]})$$
-for any $n\times n$ matrix $A$. This is a special case of general determinant identities called Grassmann-pliicker relations (or Schouter(???) identities in physics)
-$$N(a,b,c)N(a,b,c-2) = N(a,b,c-1)N(a,b,c-1)-N(a-1,b+1,c-1)N(a+1,b-1,c-1)$$,
-where $N(a,b,0)=1, N(a,b,c) = ()$
+for any $n\times n$ matrix $A$. This is a special case of general determinant identities called Grassmann-pliicker relations (or Schouter(???) identities in physics). In our case, we have
+$$N(a,b,c)N(a,b,c-2) = N(a,b,c-1)N(a,b,c-1)-N(a-1,b+1,c-1)N(a+1,b-1,c-1),$$
+where $N(a,b,0)=1, N(a,b,c) = {a+b\choose a}$. 
+Now just need to check that
+$$\prod_{i=1}^a\prod_{j=1}^b\prod_{k=1}^c \dfrac{i+j+k-1}{i+j+k-2}$$
+satisfies the same recursion.
 \end{proof}
+There is a direct way to relate determinants to enumerating perfect matchings.
+
+\section{Aztee Diamond}
+The $n^{\textrm{th}}$ Aztee diamond is a symmetric board with rows of length $2,4,6,\ldots,2n,2n,\ldots,6,4,2$.
+\begin{theorem}
+The $n^\textrm{th}$ Aztee diamond has $2^{n+1\choose 2}$ domino tilings.
+\end{theorem}
 
 \section{Spanning Trees}
 \begin{theorem}
 Let $m,n\in\mathbb{N}$ be odd. The number of domino tilings of an $m\times n$ board with one corner square removed is 
-$$\prod_{j=1}^{\floor{\frac{m}{2}}}\prod_{k=1}^{\floor{\frac{n}{2}}}(4\cos^2(\frac{\pi j}{m+1})+4\cos^2)(\frac{\pi k}{n+1})$$
+$$\prod_{j=1}^{\floor{\frac{m}{2}}}\prod_{k=1}^{\floor{\frac{n}{2}}}(4\cos^2(\frac{\pi j}{m+1})+4\cos^2(\frac{\pi k}{n+1}))$$
 \end{theorem}
 To prove this theorem we first construct a bijection from domino tilings to spanning trees of a grid graph. Then we will count spanning trees using the matrix-tree theorem.
 \begin{definition}
@@ -21,8 +32,19 @@ A spanning subgraph $H$ of $G$ is a graph $V(H)=V(G)$ and $E(H)\subset E(G)$. If
 \begin{theorem}
 let $m,n\in\mathbb{Z}_{>0}$, define a map $\varphi$ from the set of domino tilings of a $(2m-1)(2n-1)$ board whose north east corner is removed to the set of spanning trees of $P_m\square P_n$ as follows: 
 
-Embed $P_m\square P_n$ inside the (2m-1)(2n-1) board. Given a domino tiling $M$, let $\varphi(M)$ be the spanning three whose edges cross only one edge of $M$. This $\varphi$ is a bijection.
+Embed $P_m\square P_n$ inside the (2m-1)(2n-1) board. Given a domino tiling $M$, let $\varphi(M)$ be the spanning tree whose edges cross only one edge of $M$. This $\varphi$ is a bijection.
 \end{theorem}
 \begin{proof}
-First we show that $\phi$ is well defined. Note that the edges of $\varphi(M)$ correspond to the vertices of $P_m\square P_n$ except for the northeast coner vertex. So $\varphi(m)$ has $mn-1$ edges.
+First we prove $\varphi$ is well-defined. This can be seen from the fact that 
+\begin{enumerate}
+\item the edges of $\varphi(M)$ correspond to  the vertices of $P_m\square P_n$ except for the northeast corner vertex. So $\varphi(M)$ has $mn-1$ edges,
+\item $\varphi(M)$ is acyclic, otherwise, the path would enclose odd number of squares, which cannot be filled with dominoes.
+\end{enumerate}
+
+Then we must construct the unique domino tiling $M$ with $\varphi(M)=T$.
+Root $T$ at the northeast corner vertex and direct all edges toward the root. This allows us to fill in the dominoes along the tree. 
+
+Now we need to fill in the remainder. The remaining squares can be divided into several connected component $H_1,\ldots, H_l$ ( of the dual graph of the board). Note that each $H_i$ is acyclic, otherwise $H_i$ would divide $T$ into $\geq 2$ connected components. So, the all $H_i$ are trees.
+
+Similarly, each $H_i$ intersects the boundary of the boundary of the board exactly once. Therefore each $H_i$ has a unique root. By the same method we could tile all the area.
 \end{proof}
