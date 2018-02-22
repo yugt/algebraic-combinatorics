@@ -1,0 +1,123 @@
+\subsection{Matrix Tree Theorem}
+\begin{theorem}[Matrix-Tree Theorem]
+The number of spanning trees of a graph $G$ equals
+\begin{align*}
+&\det(L(G)_{V(G)\backslash \{v\},V(G)\backslash \{v\}}) \text{ any }v \text{ in }V(G)\\
+=&\dfrac{1}{n}\mu_1...\mu_{n-1} \hspace{1em}0,\mu_1,...,\mu_{n-1} \text{ are Laplacian eigenvalue}.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+(This is the second part)
+We need to show that
+$$\det(L(G)_{V(G)\backslash \{v\},V(G)\backslash \{v\}}) \text{ any }v \text{ in }V(G)
+=\dfrac{1}{n}\mu_1...\mu_{n-1}$$.
+\begin{lemma}
+Let $A\in \mathbb{C}^{n\times n}$ be a matrix where eigenvalues are $0,\mu_1,\mu_2,...,\mu_{n-1}$. Then $\mu_1\mu_2...\mu_{n-1} = \sum\limits_{i=1}^n\det(A_{[n]\backslash \{i\},[n]\backslash \{i\}})$ 
+\end{lemma}
+\begin{proof}
+Note that
+\begin{align*}
+\Phi_A(t) &= t(t-\mu_1)...(t-\mu_{n-1})\\
+[t]\Phi_A(t) &= (-1)^{n-1}\mu_1...\mu_{n-1}\\
+\text{on the other hand, } [t]\Phi_A(t) &=[t]\det(tI_n-A)\\
+&=\sum\limits_{i=1}^n\det((-A)_{[n]\backslash \{i\},[n]\backslash \{i\}})\\&=(-1)^{n-1}\sum\limits_{i=1}^n\det((A)_{[n]\backslash \{i\},[n]\backslash \{i\}})
+\end{align*}
+\end{proof}
+Apply the lemma to $A=L(G)$.
+\end{proof}
+
+\subsection{Directed Matrix Tree Theorem}
+\begin{definition}
+Let $D$ be a directed graph, the $Laplacian$ of $D$ $L(D)\in \mathbb{R}^{V(D)\times V(D)}$ is defined by
+$$L(D)_{v,w} = \left\{\begin{aligned}
+ &\text{outdeg}(v)
+ -(\text{loops at }v)& \hspace{1em} \text{if }v=w\\
+&-(\text{edges }v\rightarrow w)neq w
+\end{aligned} \right. $$
+
+\end{definition}
+\begin{remark}
+\begin{itemize}
+\item In our definition, we allow $D$ with loop and multiple edges.
+\item Note that $L(D)\vec{e}=0$.
+\end{itemize}
+\end{remark}
+
+
+\begin{definition}
+A rooted (directed) graph is a (directed) graph with a distinguished vertex, root. A rooted in tree is the (unique) orientation of an undirected rooted tree such that every edge points toward the root.
+\end{definition}
+
+\begin{theorem}[Tutle(1948)Directed matrix tree theorem]
+Let $D$ be a directed graph and $v\in V(D)$. Then the number of spanning tree rooted at $v$ is
+$$\det(L(D)_{V(D)\backslash \{v\},V(D)\backslash \{v\}})$$
+\end{theorem}
+\begin{proof}
+(Later...)
+\end{proof}
+
+\begin{remark}
+The directed matrix-tree theorem implies Kirchhoff's matrix-tree theorem:
+
+Given $G$, let $D$ be the directed graph with $V(D)=V(G)$ and edges $v\leftrightarrows w$ for every $\{v,w\}$ of $G$.
+\end{remark}
+
+\section{Eulerian Cycles}
+\begin{definition}
+Let $d,n\in\mathbb{Z}_{>0}$. A $d$-ary sequence of length $n$ is a sequence of length $n$ on the alphabet $\{0,1,\ldots,d-1\}$. A $d$-ary de Bruijn sequence of order $n$ is a sequence $(a_1,\ldots,a_{d^n})\in\{0,1,\ldots,d-1\}^{d^n}$ such that the subsequences $(a_j,a_{j+1},\ldots,a_{j+n-1})$ (n-modular) are all the $d$-ary sequences of length $n$ (each appearing exactly once.
+\end{definition}
+
+\begin{example}
+A binary de Bruijn sequence of order 3 is 
+\[
+00010111 \textrm{ and } 00011101
+\]
+\end{example}
+
+Why do de Bruijn sequences exist?
+
+How many of them are there?
+
+How do we construct them?
+
+Applications:
+\begin{enumerate}
+\item Position determination along a circular hallway.
+\item Magic: Ask for the suits of any $n$ consecutive cards in a deck of size $2^n$, etc.
+\end{enumerate}
+
+Let us show that de Bruijin sequences exist, for every $d,n$. 
+\begin{definition}
+Define the de Bruijn graph $D_{d,n}$ as the directed graph with vertex set $\{0,\ldots,d-1\}^{n-1}$ with edges $(a_1,a_2,\ldots,a_{n-1})\to (a_2,\ldots,a_{n-1},a_n)$ for all $(a_1,\ldots,a_n)\in\{0,\ldots,d-1\}^n$.
+\end{definition}
+
+\begin{example}
+$D_{2,3}$:\\
+\begin{center}
+\begin{tikzpicture}
+\tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+\tikzset{edge/.style = {->,> = latex'}}
+% vertices
+\node[vertex] (a) at  (0,0) {00};
+\node[vertex] (b) at  (3,0) {01};
+\node[vertex] (c) at  (3,3) {11};
+\node[vertex] (d) at  (0,3) {10};
+%edges
+\draw[edge] (a) to (b);
+\draw[edge] (b) to (c);
+\draw[edge] (c) to (d);
+\draw[edge] (d) to (a);
+\draw[edge] (b) to[bend left] (d);
+\draw[edge] (d) to[bend left] (b);
+\Loop[dist=1.5cm,dir=SOWE,labelstyle=above](a) 
+\Loop[dist=1.5cm,dir=NOEA,labelstyle=above](c)  
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+Key observations: $d$-ary de Bruijn sequences of order $n$ correspond to Eulerian cycles of $D_{d,n}$, i.e. directed cycles which use every edge (exactly once).
+
+\begin{theorem}[Euler]
+An undirected graph (without isolated vertices) is Euclian if and only if every vertex has even degree.
+\end{theorem}
