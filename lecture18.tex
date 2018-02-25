@@ -1,3 +1,95 @@
 % Wednesday 2.14
 \chapter{Generating Functions}
 \section{Catalan numbers}
+\begin{definition}
+Let $n\in\mathbb{N}$. A Dyck path of order $n$ is a path in the plane from $(0,0)$ to $(2n,0)$, moving by steps up(1,1) and down(1,-1) and never passing below the x-axis. 
+
+Let $\mathcal{C}_n$ denote the set of Dyck paths of order $n$. We call $C_n=|\mathbb{C}_n|$, the $n^\textrm{th}$ Catalan number. e.g. $C_0=1,c_1=1,c_2=2,c_3=5,c_4=14$. 
+\end{definition}
+
+Let's prove the classical formula 
+$$C_n=\frac{1}{n+1}\begin{pmatrix}
+2n\\n
+\end{pmatrix}=\frac{(2n)!}{(n+1)!n!}$$
+
+\begin{lemma}[Catalan recurrence]
+The Catalan sequence $(C_n)_{n=0}^\infty$ is characterized by the recurrence relation 
+$$C_n=\sum_{j=0}^{n-1}C_jC_{n-1-j},\qquad C_0=1$$
+\end{lemma}
+\begin{proof}
+For $n\neq 1$, we construct a bijection 
+$$\phi:\mathcal{C}_n\to \bigsqcup_{j=0}^{n-1}\mathcal{C}_j\times \mathcal{C}_{n-1-j}$$
+Given a Dyck path $P$, let $(2(j+1),0)$ be the first point where the path $p$ touches the x-axis after $(0,0)$. Decompose $P$ to two Dyck paths- one is from $(1,1)$ to $(2j+1,1)$ ($p_1$), the other is from $(2(j+1),0)$ to $(2n,0)$ ($p_2$). Note that $p_1\in \mathcal{C}_j$, $p_2\in\mathcal{C}_{n-1-j}$. 
+
+Set $\phi(p)=(p_1,p_2)$. Observe that $\phi$ has an inverse (by combining $p_1$ and $p_2$ in the reverse way). Therefore $\phi$ is a bijection.
+\end{proof}
+
+Define the Catalan ordinary generating function
+$$c(x)=\sum_{n\geq 0}C_n x^n.$$
+
+\begin{lemma}
+$$c(x)=x c(x)^2 +1.$$
+\end{lemma}
+\begin{proof}
+Let us compare coefficients of $x^n$ on both sides, for all $n\in\mathbb{N}$. If $n=0$, both are 1. Now suppose $n\geq 1$.
+\begin{align*}
+&[x^n](x c(x)^2+1)\\
+=&[x^{n-1}]c(x)^2\\
+=& [x^{n-1}](\sum_{i}C_ix^i)(\sum_{j}C_jx^j)\\
+=& \sum_{j=0}^{n-1}C_{n-1-j}C_j\\
+=& [x^n]c(x)
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+For $n\in \mathbb{N}$, $C_n=\frac{1}{n+1}\begin{pmatrix}
+2n\\n
+\end{pmatrix}$
+\end{theorem}
+\begin{proof}
+We use the equation $xc(x)^2-x(x)+1=0$, so $c(x)=\frac{1\pm\sqrt{1-4x}}{2x}$. Since $C(0)=1$, so 
+\begin{align*}
+c(x)&=\frac{1-\sqrt{1-4x}}{2x}\\
+&=\frac{1-\sum_{j\geq 0}\begin{pmatrix}
+\frac{1}{2}\\j
+\end{pmatrix}(-4x)^j}{2x}\\
+&=\sum_{j\geq 1}\frac{(2j-2)!}{j!(j-1)!}x^{j-1}
+\end{align*}
+Thus $C_n=[x^n]c(x)=\frac{(2n)!}{(n+1)!n!}$.
+\end{proof}
+
+\subsection{Lagrange implicit function theorem}
+A systematical way to prove that $C(x) = x C(x)^2 +1$ is use Lagrange implicit function theorem.   
+
+\begin{theorem}[Lagrange implicit function theorem]
+If $A(x)=x\phi(A(x)),$ where $\phi$ is formal power series, then
+$$[x^n]A(x)=\dfrac{1}{n}[t^{n-1}]\phi(t)^n.$$
+\end{theorem}
+
+\begin{proof}
+Let $\phi(t) = (t+1)^2$
+\begin{align*}
+A(x) &= c(x)-1\\
+c(x) &=x(c(x))^2+1\\
+\Rightarrow A(x)&=x(A(x)+1)^2\\
+C_n=[x^n]c(x)&=[x^n]A(x)\\
+&=\dfrac{1}{n}[t^{n-1}]((t+1)^2)^n\\
+&=\dfrac{1}{n}{2n \choose n-1}.
+\end{align*}
+\end{proof}
+
+\begin{remark}
+$D(x)=xD(x)^k+1$ giving $[x^n]D(x)=\dfrac{1}{n}{kn \choose n-1}(n\geq 1)$.
+\end{remark}
+
+\subsection{Combinatorial proof}
+\begin{itemize}
+\item Rotate Dyck path by $45^{\circ}$, rescale by $\dfrac{1}{\sqrt{2}}$. We then have $n\times n$ rectangle weakly above main diagonal.
+\item Add a right step at the end, we then have $n\times (n+1)$ rectangle.
+\item Given any up-right lattice path in an $n\times (n+1)$ rectangle, we can continue it periodically to form a path of slope $\dfrac{n}{n+1}$. If we start reading at any $2n+1$ points in a given period, we get distinct path since $\mathrm{gcd}(n,n+1)=1$.
+\item There is a unique path among these 2n+1 path which stays above the main diagonal. Take a line of slope $\dfrac{n}{n+1}$ and move it up until it touches our infinite path.
+\item So $C_n = \dfrac{1}{2n+1}{2n+1 \choose n}$.
+\end{itemize}
+
+
+
