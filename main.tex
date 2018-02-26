@@ -19,15 +19,11 @@
 \usepackage{enumerate}
 \usepackage{mathtools}
 \usepackage{listings}
-\usepackage{calligra}
 \usepackage{fancyhdr}
-\usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{caption}
-\usepackage{titling}
-\usepackage{comment}
 \usepackage{xparse}
 \usepackage{amsthm}
 \usepackage[dvipsnames]{xcolor}
@@ -38,16 +34,6 @@
 			urlcolor=RoyalBlue,
 			filecolor=brown,
 			menucolor=pink]{hyperref}
-\usepackage[linesnumbered,
-			boxed,
-			algochapter,
-			algo2e,
-			lined]{algorithm2e}
-\usepackage[numbered,
-			framed]{matlab-prettifier}
-\usepackage[backend=biber,backref=true]{biblatex}
-\usepackage[titletoc]{appendix}
-\addbibresource{reference.bib}
 
 
 %% tikz setting for graph drawing
@@ -56,7 +42,7 @@
 \tikzset{plain/.style={circle,fill=blue!20,draw,minimum size=0.5cm,inner sep=0pt},
 }
 \usetikzlibrary{arrows}
-\usepackage{tkz-graph}
+% \usepackage{tkz-graph}
 
 \makeatletter
 \@addtoreset{chapter}{part}
@@ -99,8 +85,6 @@
 \newtheorem*{answer}{Answer}
 
 \graphicspath{{./graphics/}}
-
-\setlength{\algomargin}{2em}
 \lstset{xleftmargin=.1\textwidth, xrightmargin=.1\textwidth}
 
 \pagestyle{fancy}

@@ -111,8 +111,10 @@ $D_{2,3}$:\begin{flushleft}\end{flushleft}
 \draw[edge] (d) to (a);
 \draw[edge] (b) to[bend left] (d);
 \draw[edge] (d) to[bend left] (b);
-\Loop[dist=1.5cm,dir=SOWE,labelstyle=above](a) 
-\Loop[dist=1.5cm,dir=NOEA,labelstyle=above](c)  
+\draw (a) edge[loop below] node {} (a);
+\draw (c) edge[loop above] node {} (c);
+% \Loop[dist=1.5cm,dir=SOWE,labelstyle=above](a) 
+% \Loop[dist=1.5cm,dir=NOEA,labelstyle=above](c)  
 \end{tikzpicture}
 \end{center}
 \end{example}
