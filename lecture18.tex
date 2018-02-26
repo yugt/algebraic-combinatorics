@@ -74,12 +74,12 @@ c(x) &=x(c(x))^2+1\\
 \Rightarrow A(x)&=x(A(x)+1)^2\\
 C_n=[x^n]c(x)&=[x^n]A(x)\\
 &=\dfrac{1}{n}[t^{n-1}]((t+1)^2)^n\\
-&=\dfrac{1}{n}{2n \choose n-1}.
+&=\dfrac{1}{n}{\binom{2n}{n-1}}.
 \end{align*}
 \end{proof}
 
 \begin{remark}
-$D(x)=xD(x)^k+1$ giving $[x^n]D(x)=\dfrac{1}{n}{kn \choose n-1}(n\geq 1)$.
+$D(x)=xD(x)^k+1$ giving $[x^n]D(x)=\dfrac{1}{n}{\binom{kn}{n-1}}(n\geq 1)$.
 \end{remark}
 
 \subsection{Combinatorial proof}
@@ -88,7 +88,7 @@ $D(x)=xD(x)^k+1$ giving $[x^n]D(x)=\dfrac{1}{n}{kn \choose n-1}(n\geq 1)$.
 \item Add a right step at the end, we then have $n\times (n+1)$ rectangle.
 \item Given any up-right lattice path in an $n\times (n+1)$ rectangle, we can continue it periodically to form a path of slope $\dfrac{n}{n+1}$. If we start reading at any $2n+1$ points in a given period, we get distinct path since $\mathrm{gcd}(n,n+1)=1$.
 \item There is a unique path among these 2n+1 path which stays above the main diagonal. Take a line of slope $\dfrac{n}{n+1}$ and move it up until it touches our infinite path.
-\item So $C_n = \dfrac{1}{2n+1}{2n+1 \choose n}$.
+\item So $C_n = \dfrac{1}{2n+1}{\binom{2n+1}{n}}$.
 \end{itemize}
 
 

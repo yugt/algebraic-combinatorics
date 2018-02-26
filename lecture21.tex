@@ -13,7 +13,7 @@ For $n\geq 1,$ we have $[x^n]xe^{A(x)}=[x^{n-1}]\sum\limits_{m\geq 0}\dfrac{A^m}
 n=1  &\Rightarrow \dfrac{a_1}{1!}\\
 n\geq 2 &\Rightarrow \text{RHS}=\sum\limits_{m=1}^{n-1}\dfrac{1}{m!}\sum\limits_{i_1..i_m\geq 1, i_1+..+i_m=n-1} \dfrac{a_{i_1}}{i_1!} ...\dfrac{a_{i_m}}{i_m!}
 \end{align*}
-We need to show that this equals $\dfrac{a_n}{n!}$, i.e.,$$a_n=\sum\limits_1^{n-1}\dfrac{n}{m!}\sum\limits_{i_1..i_m\geq 1, i_1+..+i_m=n-1}{n-1 \choose i_1 ... i_m}a_{i_1}...a_{i_m}(*)$$
+We need to show that this equals $\dfrac{a_n}{n!}$, i.e.,$$a_n=\sum\limits_1^{n-1}\dfrac{n}{m!}\sum\limits_{i_1..i_m\geq 1, i_1+..+i_m=n-1}{\binom{n-1}{i_1,\cdots,i_m}}a_{i_1}...a_{i_m}(*)$$
 
 Interpretation:
 \begin{itemize}
@@ -21,7 +21,7 @@ Interpretation:
 \item $m$ = \# neighbors of $r$
 \item $m!$ =\# ways to order the smaller rooted trees
 \item $i_1...i_m$ = \# vertices of smaller trees
-\item ${n-1 \choose i_1 ... i_m}$ = \# ways  to choose the vertex sets of the smaller rooted trees
+\item $\binom{n-1}{i_1,\cdots,i_m}$ = \# ways  to choose the vertex sets of the smaller rooted trees
 \end{itemize}
 
 So we have $A(x)=x\phi(x)$, where $\phi(x)=e^x$. By Lagrange's theorem $n\neq 0$,
@@ -47,7 +47,7 @@ $e^{(\alpha +\beta)A(x)}=e^{\alpha A(x)}e^{\beta A(x)}(\alpha , \beta \in \mathb
 
 We obtain
 $$\dfrac{(\alpha+\beta)(\alpha+\beta+n)^{n-1}}{n!}=\sum\limits_{i,j\geq 0, i+j=n} \dfrac{\alpha(\alpha+i)^{i-1}}{i!}\dfrac{\beta(\beta+n-i)^{i-1}}{i!}$$
-$$\Rightarrow (\alpha+\beta)(\alpha+\beta+n)^{n-1}=\sum\limits_{i=1}^n{n \choose i} \alpha (\alpha+i)^{i-1} \beta (\beta+n-i)^{n-i-1}.$$
+$$\Rightarrow (\alpha+\beta)(\alpha+\beta+n)^{n-1}=\sum\limits_{i=1}^n{\binom{}{}} \alpha (\alpha+i)^{i-1} \beta (\beta+n-i)^{n-i-1}.$$
 
 \end{theorem}
 
