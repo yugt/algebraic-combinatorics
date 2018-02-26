@@ -7,7 +7,7 @@ We will apply Jacobi's Identity:
 $$\det(A)\det(A_{[2,n-1][2,n-1]})=\det(A_{[2,n][2,n]})\det(A_{[1,n-1][1,n-1]}) - \det(A_{[2,n][1,n-1]})\det(A_{[1,n-1][2,n]})$$
 for any $n\times n$ matrix $A$. This is a special case of general determinant identities called Grassmann-pliicker relations (or Schouter(???) identities in physics). In our case, we have
 $$N(a,b,c)N(a,b,c-2) = N(a,b,c-1)N(a,b,c-1)-N(a-1,b+1,c-1)N(a+1,b-1,c-1),$$
-where $N(a,b,0)=1, N(a,b,c) = {a+b\choose a}$. 
+where $N(a,b,0)=1, N(a,b,c) = \binom{a+b}{a}$. 
 Now just need to check that
 $$\prod_{i=1}^a\prod_{j=1}^b\prod_{k=1}^c \dfrac{i+j+k-1}{i+j+k-2}$$
 satisfies the same recursion.
@@ -17,7 +17,7 @@ There is a direct way to relate determinants to enumerating perfect matchings.
 \section{EDIT: Aztec Diamond}
 The $n^{\textrm{th}}$ Aztec diamond is a symmetric board with rows of length $2,4,6,\ldots,2n,2n,\ldots,6,4,2$.
 \begin{theorem}
-The $n^\textrm{th}$ Aztec diamond has $2^{n+1\choose 2}$ domino tilings.
+The $n^\textrm{th}$ Aztec diamond has $2^{\binom{n+1}{2}}$ domino tilings.
 \end{theorem}
 
 \section{Spanning Trees}
