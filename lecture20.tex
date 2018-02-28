@@ -1,2 +1,72 @@
 % Monday 2.19
+\begin{itemize}
+    \item \(\mathbb{C}[[x]]\): ring of formal power series
+    \[ \sum_{n\geq0}a_n x^n \]
+    addition, multiplication are as for analytic functions, also a notion of composition.
+    \item \(A\in\mathbb{C}[[x]]\) is invertible \iff \(A(0)\neq0\).
+    \item \(A\in\mathbb{C}[[x]]\) with \(A(0)=0\) has a compositional inverse \iff \(\left[x^1\right]A(x)\neq0\).
+\end{itemize}
+
 \section{Formal Laurent series}
+\begin{definition}[formal Laurent series]
+Let \(\mathbb{C}((x))\) denote the field of formal Laurent series (in one variable), \textit{i.e.}, power series of the form
+\[ \sum_{n\geq k}a_n x^n \qquad (a_n\in\mathbb{C}) \]
+for some \(k\in\Z\) with the expected addition and multiplication.
+Note htat indeed every nonzero formal Laurent series \(f\) has an inverse:
+we can write
+\[ f= x^k\cdot g \]
+where \(g\in\mathbb{C}[[x]]\) is a formal power series with \(g(0)\neq0\).
+We know \(g^{-1}\in\mathbb{C}[[x]]\), so
+\[ f^{-1}=x^{-k}\cdot g^{-1}\in\mathbb{C}((x)) \]
+That is, \(\mathbb{C}((x))\) is the field of fractions of \(\mathbb{C}[[x]]\).
+\end{definition}
+
+\subsection{Derivatives}
+\begin{definition}[derivative]
+For
+\[ f=\sum_{n\geq k}f_n x^n\in\mathbb{C}((x)), \]
+define its derivative
+\[ f'\coloneqq\sum_{n\geq k}nf_n x^{n-1}\in\mathbb{C}((x)), \]
+\end{definition}
+The key observatiion for proving Lagrange's theorem is that
+\[ \left[x^{-1}\right]f'=0 \quad \forall f\in\mathbb{C}((x)) \]
+Let's see to recover the usual properties of the derivative.
+For example, the product rule
+\[ (fg)'=f'g+fg' \]
+Since this equation is linear in \(f\) and \(g\), it suffices to prove it where \(f=x^l\) and \(g=x^m\).
+Then it reduces to
+\[ \left(x^{l+m}\right)'=x^l\left(x^m\right)'+\left(x^l\right)'x^m \]
+where we can verify explicitly.
+Applying the product rule \(n-1\) times \(n\geq1\) we obtain
+\[ \left(f^n\right)'=nf^{n-1}f' \]
+for positive \(n\).
+If \(n\) is negative, we obtain the power rule from the equation
+\[ 0=\left(f^n f^{-n}\right)'=f^n\left(f^{-n}\right)'+\left(f^n\right)'f^{-n} \]
+This proves the power for all \(n\in\Z\).
+Note that this immediately implies the chain rule
+\[ \left(f(A(x))\right)'=f'(A(x))A'(x) \qquad \forall A\in\mathbb{C}[[x]],A(0)\neq0,f\in\mathbb{C}((x)) \]
+This is because chain rule is linear in \(f\) and it reduces to the power rule when \(f=x^n\).
+
+\section{Lagrange's theorem}
+\begin{theorem}[Lagrange implicit function theorem/Lagrange inversion formula]
+Suppose that \(\phi\in\mathbb{C}[[x]]\) with \(\phi(0)\neq0\).
+then there exists a unique \(A\in\mathbb{C}[[x]]\) with
+\[ A(x)=x\phi(A(x)) \]
+for any \(f\in\mathbb{C}((x))\) and \(n\neq0\),
+\[ \left[x^n\right]f(A(x))=\frac{1}{n}\left[x^{n-1}\right]f'(x)\phi^n(x) \]
+If \(f(x)=x\), this states
+\[ \left[x^n\right]A(x)=\frac{1}{n}\left[x^{n-1}\right]\phi^n(x) \]
+\end{theorem}
+
+To prove this theorem, we need the following lemma.
+\begin{lemma}[Residue composition]
+Let \(A\in\mathbb{C}[[x]]\), where
+\[ A(x)=\sum_{n\geq k}a_n x^n \quad \text{where } k\geq1 \text{ and } a_k\neq0 \]
+then for any \(f\in\mathbb{C}((x))\),
+\[ \left[x^{-1}\right]f(x)=\frac{1}{k}\left[x^{-1}\right]f(A(x))\cdot A'(x) \]
+\end{lemma}
+\begin{proof}[Proof of lemma]
+Since the equation is linear in \(f\), it suffices to prove it when \(f=x^n,n\in\Z\).
+We want to prove
+\[ \frac{1}{k}\left[x^{-1}\right]A^n(x)\cdot A'(x) \]
+\end{proof}
