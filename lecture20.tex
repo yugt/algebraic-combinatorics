@@ -28,7 +28,7 @@ For
 define its derivative
 \[ f'\coloneqq\sum_{n\geq k}nf_n x^{n-1}\in\mathbb{C}((x)), \]
 \end{definition}
-The key observatiion for proving Lagrange's theorem is that
+The key observation for proving Lagrange's theorem is that
 \[ \left[x^{-1}\right]f'=0 \quad \forall f\in\mathbb{C}((x)) \]
 Let's see to recover the usual properties of the derivative.
 For example, the product rule
@@ -68,5 +68,24 @@ then for any \(f\in\mathbb{C}((x))\),
 \begin{proof}[Proof of lemma]
 Since the equation is linear in \(f\), it suffices to prove it when \(f=x^n,n\in\Z\).
 We want to prove
-\[ \frac{1}{k}\left[x^{-1}\right]A^n(x)\cdot A'(x) \]
+\[ \frac{1}{k}\left[x^{-1}\right]A^n(x)\cdot A'(x)\begin{cases} 1 & \text{if } n=-1 \\ 0 & \text{if } n\neq-1\end{cases} \]
+\begin{itemize}
+\item If \(n\neq-1\), then
+\[ \left[x^{-1}\right]A^n(x)\cdot A'(x)=\left[x^{-1}\right]\frac{\left(A^{n+1}(x)\right)'}{n+1}=0 \]
+\item If \(n=-1\), then write
+\[ A(x)=x^k\cdot B(x) \quad \text{where } B\in\mathbb{C}[[x]], B(0)\neq0 \]
+\end{itemize}
+Then \(B^{-1}(x)\in\mathbb{C}[[x]]\).
+We have
+\begin{align*}
+\left[x^{-1}\right]A^{-1}(x)\cdot A'(x)&=\left[x^{-1}\right]\left(x^kB(x)\right)^{-1}\left(x^kB(x)\right)'\\
+&=\left[x^{-1}\right]x^{-k}B^{-1}(x)\left[x^kB'(x)+kx^{k-1}B(x)\right]\\
+&=\left[x^{-1}\right](\underbrace{B^{-1}(x)B'(x)}_{\in\mathbb{C}[[x]]}+kx^{-1})=0+k=k
+\end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Lagrange theorem]
+Since \(\phi(0)\neq0\), \(\phi^{-1}\in\mathbb{C}[[x]]\).
+Let
+\[ B(x)\coloneqq x\phi^{-1}(x)\in\mathbb{C}[[x]] \]
 \end{proof}
