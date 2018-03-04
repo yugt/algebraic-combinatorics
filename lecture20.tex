@@ -60,6 +60,7 @@ If \(f(x)=x\), this states
 
 To prove this theorem, we need the following lemma.
 \begin{lemma}[Residue composition]
+\label{residuecomposition}
 Let \(A\in\mathbb{C}[[x]]\), where
 \[ A(x)=\sum_{n\geq k}a_n x^n \quad \text{where } k\geq1 \text{ and } a_k\neq0 \]
 then for any \(f\in\mathbb{C}((x))\),
@@ -88,4 +89,20 @@ We have
 Since \(\phi(0)\neq0\), \(\phi^{-1}\in\mathbb{C}[[x]]\).
 Let
 \[ B(x)\coloneqq x\phi^{-1}(x)\in\mathbb{C}[[x]] \]
+Note that the equation \(A(x)=x\phi(A(x))\) is just \(B(A(x))=x\).
+So the unique \(A\) is the compositional inverse of \(B\).
+Moreover, \(A(B(x))=0\).
+For \(n\neq0\),
+\begin{align*}
+\left[x^n\right]f(A(x))&=\left[x^{-1}\right]x^{-n-1}f(A(x))\\
+&=\frac{1}{1}\left[x^{-1}\right]B^{-n-1}(x)f(\underbrace{A(B(x))}_{x})B'(x) \tag{Lemma \ref{residuecomposition} with \(k=1\)}\\
+&=\left[x^{-1}\right]f(x)\cdot\frac{\left(B^{-n}(x)\right)'}{-n}
+\end{align*}
+Note that \(\left[x^{-1}\right]p(x)q(x)=0\implies\left[x^{-1}\right]p(x)q'(x)=-\left[x^{-1}\right]p'(x)q(x)\)
+Then,
+\begin{align*}
+\left[x^{-1}\right]f(x)\cdot\frac{\left(B^{-n}(x)\right)'}{-n}&=\frac{1}{n}\left[x^{-1}\right]f'(x)\left(x\phi^{-1}(x)\right)^{-n}\\
+&=\frac{1}{n}\left[x^{-1}\right]f'(x)x^{-n}\phi^n(x)\\
+&=\frac{1}{n}\left[x^{n-1}\right]f'(x)\phi^n(x)
+\end{align*}
 \end{proof}
