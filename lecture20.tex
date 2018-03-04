@@ -60,7 +60,7 @@ If \(f(x)=x\), this states
 
 To prove this theorem, we need the following lemma.
 \begin{lemma}[Residue composition]
-\label{residuecomposition}
+\label{residue composition}
 Let \(A\in\mathbb{C}[[x]]\), where
 \[ A(x)=\sum_{n\geq k}a_n x^n \quad \text{where } k\geq1 \text{ and } a_k\neq0 \]
 then for any \(f\in\mathbb{C}((x))\),
@@ -95,7 +95,7 @@ Moreover, \(A(B(x))=0\).
 For \(n\neq0\),
 \begin{align*}
 \left[x^n\right]f(A(x))&=\left[x^{-1}\right]x^{-n-1}f(A(x))\\
-&=\frac{1}{1}\left[x^{-1}\right]B^{-n-1}(x)f(\underbrace{A(B(x))}_{x})B'(x) \tag{Lemma \ref{residuecomposition} with \(k=1\)}\\
+&=\frac{1}{1}\left[x^{-1}\right]B^{-n-1}(x)f(\underbrace{A(B(x))}_{x})B'(x) \tag{Lemma \ref{residue composition} with \(k=1\)}\\
 &=\left[x^{-1}\right]f(x)\cdot\frac{\left(B^{-n}(x)\right)'}{-n}
 \end{align*}
 Note that \(\left[x^{-1}\right]p(x)q(x)=0\implies\left[x^{-1}\right]p(x)q'(x)=-\left[x^{-1}\right]p'(x)q(x)\)
@@ -106,3 +106,29 @@ Then,
 &=\frac{1}{n}\left[x^{n-1}\right]f'(x)\phi^n(x)
 \end{align*}
 \end{proof}
+
+
+\begin{example}[special series]
+Consider the formal power series with \(x\in\mathbb{C}\)
+\begin{align*}
+    \mathcal{E}(x)&\coloneqq\sum_{n\geq0}\frac{x^n}{n!}\\
+    \lambda(x)&\coloneqq\sum_{n\geq1}\frac{x^n}{n}\\
+    B_{\alpha}(x)&\coloneqq\sum_{n\geq0}\binom{\alpha}{n}x^n
+\end{align*}
+We can show that \(\mathcal{E},\lambda,B_\alpha\) satisfy the usual properties of \(e^x\), \(-\log(1-x)\) and \((1+x)^\alpha\), \textit{e.g.},
+\begin{align*}
+\mathcal{E}(x+y)&=\mathcal{E}(x)\mathcal{E}(y)\\
+\mathcal{E}'(x)&=\mathcal{E}(x)\\
+\lambda(1-\mathcal{E}(-x))&=x\\
+B_{\alpha+\beta}(x)&=B_\alpha(x)B_\beta(x)
+\end{align*}
+So we will just denote these by
+\[ e^x \quad -\log(1-x) \quad (1+x)^\alpha \]
+We can prove these identies directly, or use the following shortcut: if \(f,g\) analytic power series and there exists \(r>0\) such that
+\[ f(z)=g(z) \qquad |z|<r \]
+then
+\[ \left[x^n\right]f(x)=\left[x^n\right]g(x) \qquad \forall n\in\N \]
+This follows by taking the derivative of \(f(z)=g(z)\) \(n\) times and set \(z=0\).
+(And this works in multivariables.)
+\end{example}
+

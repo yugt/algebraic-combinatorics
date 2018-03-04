@@ -51,6 +51,35 @@ $e^{(\alpha +\beta)A(x)}=e^{\alpha A(x)}e^{\beta A(x)}(\alpha , \beta \in \mathb
 We obtain
 $$\dfrac{(\alpha+\beta)(\alpha+\beta+n)^{n-1}}{n!}=\sum\limits_{i,j\geq 0, i+j=n} \dfrac{\alpha(\alpha+i)^{i-1}}{i!}\dfrac{\beta(\beta+n-i)^{i-1}}{i!}$$
 $$\Rightarrow (\alpha+\beta)(\alpha+\beta+n)^{n-1}=\sum\limits_{i=1}^n{\binom{n}{i}} \alpha (\alpha+i)^{i-1} \beta (\beta+n-i)^{n-i-1}.$$
-
 \end{theorem}
 
+\begin{theorem}[negative binomial]
+\label{negative binomial}
+\[ (1-x)^{-\alpha}=\sum_{n\geq0}\binom{\alpha+n-1}{n}x^n \quad \alpha\in\mathbb{C} \]    
+\end{theorem}
+\begin{proof}
+exercise.
+\end{proof}
+
+\begin{example}[quintic equation]
+Consider the quintic equation
+\[ t^5-t+\frac{1}{2}=0 \]
+This is an example of an unsolvable quintic, \textit{i.e.}, we cannot find all solutions \(t\in\mathbb{C}\) by radicals.
+However, we can solve for (one possible) \(t\) as a power series.
+Let's consider more generally,
+\[ t^5-t+x=0 \]
+and regard \(t\) as a formal power series in \(\mathbb{C}[[x]]\).
+The corresponding quintic is unsolvable for almost all value of \(x\).
+We have
+\[ t\left(t^4-1\right)=-x \implies t=x\left(1-t^4\right)^{-1} \]
+\textit{i.e.},
+\[ t=x\phi(t) \quad\text{where } \phi(x)=\left(1-x^4\right)^{-1} \]
+By Lagrange theorem for \(n\geq1\),.
+\[ \left[x^n\right]t=\frac{1}{n}\left[x^{n-1}\right]\left(1-x^4\right)^{-n} \]
+By Theorem \ref{negative binomial},
+\[ \left[x^n\right]t=\frac{1}{n}\left[x^{n-1}\right]\sum_{i\geq0}\binom{n+i-1}{i}x^{4i}=\begin{cases} \frac{1}{4i+1}&\text{if } n-1=4i \\ 0 & \text{otherwise} \end{cases} \]
+Thus,
+\[ t=\sum_{i\geq0}\frac{1}{4i+1}\binom{5i}{i}x^{4i+1} \]
+As an analytic power series, it has radius of convergence \(r=4\times5^{-\frac{5}{4}}\approx0.53499\).
+So when \(x=\frac{1}{2}<0.53\), \(t\approx0.5506\).
+\end{example}
